@@ -2,8 +2,6 @@
 Lessons learned in building a chrome extension
 
 # project structure
-- README.md (you are here)
+- README.md (You are here)
 - manifest.json
-- popup/
---- various js files
---- various html files
+- popup/ (Contains the various JS and HTML files for our extension)
