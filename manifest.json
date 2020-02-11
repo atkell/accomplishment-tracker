@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "name": "Accomplishment Box",
+  "version": "1.0",
+
+  "description": "Do great work; track your accomplishments.",
+  "author": "Alex & Mike",
+
+  "permissions": [
+    "storage"
+  ],
+
+  "browser_action": {
+    "default_title": "Accomplishment",
+    "default_popup": "popup/storage_demo.html"
+  }
+}
