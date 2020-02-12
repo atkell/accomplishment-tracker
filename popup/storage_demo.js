@@ -27,39 +27,44 @@ function deleteAllItems() {
 function addNewItem() {
     let summary = document.getElementById('summary').value;
     let details = document.getElementById('details').value;
+    let status = document.getElementById('status').value;
 
     // One way to make our entry unique is by making the date the ID
     // let date = new Date().toISOString();
     // If we use this date format, we can split it at the comma to do fun things...
-    let date = new Date().toLocaleString(); //  12/20/2012, 03:00:00 AM/PM
-
+    // let date = new Date().toLocaleString(); //  12/20/2012, 03:00:00 AM/PM
+    let date = Date.now(); //  Milliseconds
     // Another way to make our entries unique is to simply set an ID based on the length
     // of the items in storage + 1
-    chrome.storage.sync.get(null, function(result) {
-        let obj = Object.keys(result);      // (1) Get the keys
-        let length = obj.length;            // (2) Count the keys + assign the value
-    });
-    length = length + 1;
-    let entryID = "entry-" + length;    // (3) Build the unique ID
-    console.log(entryID, summary, details, date);
-    let entryBody = {
-        "summary": summary,
-        "details": details,
-        "date": date
-    };
+    // chrome.storage.sync.get(null, function(result) {
+    //     let obj = Object.keys(result);      // (1) Get the keys
+    //     let length = obj.length;            // (2) Count the keys + assign the value
+    //     length = length++;
+    //     let entryID = "entry-" + length;    // (3) Build the unique ID
+    // });
+    // length = length + 1;
+    // let entryID = "entry-" + length;    // (3) Build the unique ID
+    // console.log(entryID, summary, details, date, status);
 
-    let entryBody2 = [];
-    entryBody2.push({"summary": summary});
+    let body = [];
+    body.push({"summary": summary});
+    body.push({"details": details});
+    body.push({"date": date});
+    body.push({"status": status});
+    // var body = JSON.stringify(body);
 
-    let entryAsJSON = JSON.stringify(entryBody);
-    console.log(entryID, entryAsJSON);
+    // for (let i = 0; i < body.length; i++) {
+    //     console.log(body.keys());
+    // }
+    // // let entryAsJSON = JSON.stringify(entryBody);
+    // console.log(entryID, body);
 
     // Save (set) the value
-    chrome.storage.sync.set({[date]: summary}, function () {
+    chrome.storage.sync.set({[date]: body}, function () {
         console.log('Created new entry!');
     });
 
-    // viewAllItems();
+    openInNewTab();
 }
 
 
