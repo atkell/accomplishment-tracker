@@ -27,6 +27,7 @@ function deleteAllItems() {
 function addNewItem() {
     let summary = document.getElementById('summary').value;
     let details = document.getElementById('details').value;
+    let status = document.getElementById(status).value;
 
     // One way to make our entry unique is by making the date the ID
     // let date = new Date().toISOString();
@@ -41,15 +42,18 @@ function addNewItem() {
     });
     length = length + 1;
     let entryID = "entry-" + length;    // (3) Build the unique ID
-    console.log(entryID, summary, details, date);
-    let entryBody = {
-        "summary": summary,
-        "details": details,
-        "date": date
-    };
+    console.log(entryID, summary, details, date, status);
+    // let entryBody = {
+    //     "summary": summary,
+    //     "details": details,
+    //     "date": date
+    // };
 
-    let entryBody2 = [];
-    entryBody2.push({"summary": summary});
+    let body = [];
+    body.push({"summary": summary});
+    body.push({"details": details});
+    body.push({"date": date});
+    body.push({"status": status});
 
     let entryAsJSON = JSON.stringify(entryBody);
     console.log(entryID, entryAsJSON);
