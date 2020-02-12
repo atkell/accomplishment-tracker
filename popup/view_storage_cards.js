@@ -29,63 +29,72 @@ function viewAllItems() {
             // Use our incrementer to find the correct values for...
             let entryID = document.createTextNode(obj[i]); // Right now, ~date~ entry ID is our key
             let summary = document.createTextNode(arr[i]); // Right now, summary is our value
-            let details = document.createTextNode(arr[i]); // Right now, summary is our value
-            let date = document.createTextNode(arr[i]); // Right now, summary is our value
+            let details = document.createTextNode("The quick brown fox jumped over the lazy dog.");
+            let date = document.createTextNode("Posted 3 days ago");
+            let status = document.createTextNode("in progress");
             // let details = document.createTextNode("This string of wonderful words."); // Place holder
             console.log(summary);
             console.log(entryID);
 
-            // Find the correct HTML element
+            // Find the correct HTML element: <div class="row" id="grid-row">
             let gridRow = document.getElementById('grid-row');
 
-            // Create the column element & add add the right class
+            // Create the column: <div class="col-md-4">
             let gridRowColumn = document.createElement('div');
             gridRowColumn.classList.add('col-md-4');
 
-
-            // Create the card container element & and add the right class
+            // Create the card container: <div class="card mt-4">
             let gridRowCardContainer = document.createElement('div');
             gridRowCardContainer.classList.add('card');
+            gridRowCardContainer.classList.add('mt-4'); // Cleaner to have this, I think...
 
-            // Create the card body element & add the right class
+            // Create the card body: <div class="card-body">
             let gridRowCardBody = document.createElement('div');
             gridRowCardBody.classList.add('card-body');
 
-            // Create the h5 element for a card title & and add the right class
-            // This will be our "summary"
+            // Create the card title (summary): <h5 class="card-title">
             let gridRowCardTitle = document.createElement('h5');
             gridRowCardTitle.classList.add('card-title');
 
-            // Create the h6 element for a card subtitle & and add the right class
-            // This will be our "date" ... for now
-            let gridRowCardSubTitle = document.createElement('h6');
-            gridRowCardSubTitle.classList.add('card-subtitle');
-            gridRowCardSubTitle.classList.add('mb2');
-            gridRowCardSubTitle.classList.add('text-muted');
-
-            // Create the paragraph text element for a card & and add the right class
-            // This will be our "details"
+            // Create the details paragraph: <p class="card-text">
             let gridRowCardText = document.createElement('p');
             gridRowCardText.classList.add('card-text');
 
-            // Why not...
-            // let lineBreak = document.createElement('br');
-            // Use this like
-            // gridRowItem.appendChild(lineBreak);
+            // Create the flex box for status and time: <div class="d-flex justify-content-between align-items-center">
+            let gridRowCardFlexBox = document.createElement('div');
+            gridRowCardFlexBox.classList.add('d-flex');
+            gridRowCardFlexBox.classList.add('justify-content-between');
+            gridRowCardFlexBox.classList.add('align-items-center');
 
-            // Add the summary as the title
+            // Create the status badge: <span class="badge badge-primary">
+            // TODO: We'll have to add a condition to update the badge color based on status
+            let gridRowCardBadge = document.createElement('span');
+            gridRowCardBadge.classList.add('badge');
+            gridRowCardBadge.classList.add('badge-primary');
+
+            // Create the status badge: <small class="text-muted">
+            // TODO: We'll need to build a new function to calculate the difference between NOW and date
+            let gridRowCardDate = document.createElement('small');
+            gridRowCardDate.classList.add('text-muted');
+
+            // Add the summary as title
             gridRowCardTitle.appendChild(summary);
 
-            // Add the ~date~ entry ID as the subtitle
-            gridRowCardSubTitle.appendChild(entryID);
-
-            // Do nothing with the text...
+            // Add our details as paragraph text
             gridRowCardText.appendChild(details);
+
+            // Add our status as badge, time as time
+            gridRowCardBadge.appendChild(status);
+            gridRowCardDate.appendChild(date);
+
+            // Add our status and time to the flex box
+            gridRowCardFlexBox.appendChild(gridRowCardBadge);
+            gridRowCardFlexBox.appendChild(gridRowCardDate);
 
             // Build the card itself from its components
             gridRowCardBody.appendChild(gridRowCardTitle);
-            gridRowCardBody.appendChild(gridRowCardSubTitle);
             gridRowCardBody.appendChild(gridRowCardText);
+            gridRowCardBody.appendChild(gridRowCardFlexBox);
             console.log(gridRowCardBody);
 
             // Add the card body to the container
