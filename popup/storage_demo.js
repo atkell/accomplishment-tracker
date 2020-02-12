@@ -32,19 +32,21 @@ function addNewItem() {
     // One way to make our entry unique is by making the date the ID
     // let date = new Date().toISOString();
     // If we use this date format, we can split it at the comma to do fun things...
-    let date = new Date().toLocaleString(); //  12/20/2012, 03:00:00 AM/PM
-
+    // let date = new Date().toLocaleString(); //  12/20/2012, 03:00:00 AM/PM
+    let date = Date.now(); //  Milliseconds
     // Another way to make our entries unique is to simply set an ID based on the length
     // of the items in storage + 1
-    chrome.storage.sync.get(null, function(result) {
-        let obj = Object.keys(result);      // (1) Get the keys
-        let length = obj.length;            // (2) Count the keys + assign the value
-    });
-    length = length + 1;
-    let entryID = "entry-" + length;    // (3) Build the unique ID
+    // chrome.storage.sync.get(null, function(result) {
+    //     let obj = Object.keys(result);      // (1) Get the keys
+    //     let length = obj.length;            // (2) Count the keys + assign the value
+    //     length = length++;
+    //     let entryID = "entry-" + length;    // (3) Build the unique ID
+    // });
+    // length = length + 1;
+    // let entryID = "entry-" + length;    // (3) Build the unique ID
     // console.log(entryID, summary, details, date, status);
 
-    var body = [];
+    let body = [];
     body.push({"summary": summary});
     body.push({"details": details});
     body.push({"date": date});
@@ -58,7 +60,7 @@ function addNewItem() {
     // console.log(entryID, body);
 
     // Save (set) the value
-    chrome.storage.sync.set({[entryID]: body}, function () {
+    chrome.storage.sync.set({[date]: body}, function () {
         console.log('Created new entry!');
     });
 

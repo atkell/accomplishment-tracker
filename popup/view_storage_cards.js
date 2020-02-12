@@ -36,7 +36,18 @@ function viewAllItems() {
             let entryID = document.createTextNode(obj[i]); // Right now, ~date~ entry ID is our key
             let summary = document.createTextNode(arr[i][0]['summary']); // Right now, summary is our value
             let details = document.createTextNode(arr[i][1]['details']);
-            let date = document.createTextNode(arr[i][2]['date']);
+
+            // It would be cool if we could say "Posted N days ago"...
+            let date = arr[i][2]['date'];
+            let timeDelta = Date.now() - date;
+            let daysDelta = timeDelta / (1000 * 3600 * 24);
+            if (Math.round(daysDelta) > 1) {
+                var daysPassed = 'Posted ' + daysDelta + ' days ago';
+            } else {
+                var daysPassed = 'Posted today';
+            }
+            let dateTextNode = document.createTextNode(daysPassed);
+
             let status = arr[i][3]['status'];
             let statusTextNode = document.createTextNode(status);
             // let details = document.createTextNode("This string of wonderful words."); // Place holder
@@ -101,7 +112,7 @@ function viewAllItems() {
 
             // Add our status as badge, time as time
             gridRowCardBadge.appendChild(statusTextNode);
-            gridRowCardDate.appendChild(date);
+            gridRowCardDate.appendChild(dateTextNode);
 
             // Add our status and time to the flex box
             gridRowCardFlexBox.appendChild(gridRowCardBadge);
