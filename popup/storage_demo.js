@@ -59,7 +59,7 @@ function addNewItem() {
         console.log('Created new entry!');
     });
 
-    // viewAllItems();
+    openInNewTab();
 }
 
 
