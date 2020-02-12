@@ -16,10 +16,16 @@ function viewAllItems() {
 
         // Let's do some research: What data type is returned to us?
         // console.log(result); // Answer: an object
+        // var result = JSON.stringify(result);
         let obj = Object.keys(result);
         let arr = Object.values(result); // Can we access just the values?
-        console.log(obj); // What data type is this? An object.
-        console.log(arr); // What data type is this? An object.
+        console.log(result); // What data type is this? An object.
+        console.log(obj[0]); // What data type is this? An object.
+        console.log(arr[0][0]['summary']); // What data type is this? An object.
+        console.log(arr[0][1]['details']); // What data type is this? An object.
+        console.log(arr[0][2]['date']); // What data type is this? An object.
+        console.log(arr[0][3]['status']); // What data type is this? An object.
+        // console.log(arr); // What data type is this? An object.
         // console.log(arr.length); // This returns the length of the new array (see below)
 
         // Now that we know how to find the length of the array of items, we can loop to add new list items instead of
@@ -28,13 +34,13 @@ function viewAllItems() {
         for (let i = 0; i < arr.length; i++) {
             // Use our incrementer to find the correct values for...
             let entryID = document.createTextNode(obj[i]); // Right now, ~date~ entry ID is our key
-            let summary = document.createTextNode(arr[i]); // Right now, summary is our value
-            let details = document.createTextNode("The quick brown fox jumped over the lazy dog.");
-            let date = document.createTextNode("Posted 3 days ago");
-            let status = document.createTextNode("in progress");
+            let summary = document.createTextNode(arr[i][0]['summary']); // Right now, summary is our value
+            let details = document.createTextNode(arr[i][1]['details']);
+            let date = document.createTextNode(arr[i][2]['date']);
+            let status = document.createTextNode(arr[i][3]['status']);
             // let details = document.createTextNode("This string of wonderful words."); // Place holder
-            console.log(summary);
-            console.log(entryID);
+            // console.log(summary);
+            // console.log(entryID);
 
             // Find the correct HTML element: <div class="row" id="grid-row">
             let gridRow = document.getElementById('grid-row');

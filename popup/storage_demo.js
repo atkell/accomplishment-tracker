@@ -27,7 +27,7 @@ function deleteAllItems() {
 function addNewItem() {
     let summary = document.getElementById('summary').value;
     let details = document.getElementById('details').value;
-    let status = document.getElementById(status).value;
+    let status = document.getElementById('status').value;
 
     // One way to make our entry unique is by making the date the ID
     // let date = new Date().toISOString();
@@ -42,24 +42,23 @@ function addNewItem() {
     });
     length = length + 1;
     let entryID = "entry-" + length;    // (3) Build the unique ID
-    console.log(entryID, summary, details, date, status);
-    // let entryBody = {
-    //     "summary": summary,
-    //     "details": details,
-    //     "date": date
-    // };
+    // console.log(entryID, summary, details, date, status);
 
-    let body = [];
+    var body = [];
     body.push({"summary": summary});
     body.push({"details": details});
     body.push({"date": date});
     body.push({"status": status});
+    // var body = JSON.stringify(body);
 
-    let entryAsJSON = JSON.stringify(entryBody);
-    console.log(entryID, entryAsJSON);
+    // for (let i = 0; i < body.length; i++) {
+    //     console.log(body.keys());
+    // }
+    // // let entryAsJSON = JSON.stringify(entryBody);
+    // console.log(entryID, body);
 
     // Save (set) the value
-    chrome.storage.sync.set({[date]: summary}, function () {
+    chrome.storage.sync.set({[entryID]: body}, function () {
         console.log('Created new entry!');
     });
 
