@@ -37,7 +37,8 @@ function viewAllItems() {
             let summary = document.createTextNode(arr[i][0]['summary']); // Right now, summary is our value
             let details = document.createTextNode(arr[i][1]['details']);
             let date = document.createTextNode(arr[i][2]['date']);
-            let status = document.createTextNode(arr[i][3]['status']);
+            let status = arr[i][3]['status'];
+            let statusTextNode = document.createTextNode(status);
             // let details = document.createTextNode("This string of wonderful words."); // Place holder
             // console.log(summary);
             // console.log(entryID);
@@ -76,7 +77,16 @@ function viewAllItems() {
             // TODO: We'll have to add a condition to update the badge color based on status
             let gridRowCardBadge = document.createElement('span');
             gridRowCardBadge.classList.add('badge');
-            gridRowCardBadge.classList.add('badge-primary');
+            if (status.includes('In Progress')) {
+                gridRowCardBadge.classList.add('badge-primary');
+            } else if (status.includes('On Hold')) {
+                gridRowCardBadge.classList.add('badge-warning');
+            } else if (status.includes('Won\'t Do')) {
+                gridRowCardBadge.classList.add('badge-danger');
+            } else {
+                gridRowCardBadge.classList.add('badge-success');
+            }
+
 
             // Create the status badge: <small class="text-muted">
             // TODO: We'll need to build a new function to calculate the difference between NOW and date
@@ -90,7 +100,7 @@ function viewAllItems() {
             gridRowCardText.appendChild(details);
 
             // Add our status as badge, time as time
-            gridRowCardBadge.appendChild(status);
+            gridRowCardBadge.appendChild(statusTextNode);
             gridRowCardDate.appendChild(date);
 
             // Add our status and time to the flex box
