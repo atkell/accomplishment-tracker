@@ -40,13 +40,20 @@ function viewAllItems() {
             // It would be cool if we could say "Posted N days ago"...
             let date = arr[i][2]['date'];
             let timeDelta = Date.now() - date;
-            let daysDelta = timeDelta / (1000 * 3600 * 24);
-            if (Math.round(daysDelta) > 1) {
-                var daysPassed = 'Posted ' + daysDelta + ' days ago';
+            // let daysDelta = timeDelta / (1000 * 3600 * 24); // time in days
+            var timePassed = Math.round((timeDelta / 1000 / 60)); // Time in seconds
+            if (timePassed > 60) {
+                var timePassed = Math.round((timePassed / 60));
+                var unitOfTime = 'hours';
+            } else if (timePassed < 60 && timePassed > 1) {
+                var unitOfTime = 'minutes';
             } else {
-                var daysPassed = 'Posted today';
+                var timePassed = 1;
+                var unitOfTime = 'minute';
             }
-            let dateTextNode = document.createTextNode(daysPassed);
+            var timePassedText = 'Posted ' + timePassed + ' ' + unitOfTime + ' ago';
+
+            let dateTextNode = document.createTextNode(timePassedText);
 
             let status = arr[i][3]['status'];
             let statusTextNode = document.createTextNode(status);
