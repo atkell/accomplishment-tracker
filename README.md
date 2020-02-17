@@ -2,7 +2,6 @@
 Lessons learned in building a chrome extension
 
 # files of note
-manfiest.json (required)
 
 `popup/popup.html`
 
