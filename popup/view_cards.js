@@ -8,6 +8,10 @@
 // 7. Place our key values into the appropriate HTML blocks of our card
 // 8. "Stack" our blocks into the shape of a card and then place it all into the HTML file
 
+document.getElementById("home").addEventListener("click", function () {
+    location.reload();
+    }
+);
 
 class Accomplishment {
 
@@ -59,10 +63,17 @@ class Accomplishment {
         this._duration = value;
     }
 
+    deleteCard() {
+        let card_key = document.createTextNode(this._date);
+
+        // StorageArea.remove(card_key);
+        console.log('Removed card with ID of ' + card_key);
+    }
+
     calcDuration() {
 
         var durationInMinutes = Math.round(((Date.now() - this._date) / 60000));
-        console.log(durationInMinutes);
+        // console.log(durationInMinutes);
 
         var suffix = '';
 
@@ -89,7 +100,8 @@ class Accomplishment {
 
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
-        let card_date = document.createTextNode(this._date);
+        // let card_key = document.createTextNode(this._date); // we'll need this to update or remove this card
+        let card_key = this._date.toString(); // we'll need this to update or remove this card
         let card_status = document.createTextNode(this._status);
         let card_duration = document.createTextNode(this._duration);
 
@@ -140,6 +152,87 @@ class Accomplishment {
         let gridRowCardDate = document.createElement('small');
         gridRowCardDate.classList.add('text-muted');
 
+
+        // TODO Make this better --- demo to FAVORITE a card
+        // let card_favorite = document.createTextNode('Favorite card');
+        // let gridRowCardFavorite = document.createElement('a');
+        // gridRowCardFavorite.setAttribute('href', '#');
+        // gridRowCardFavorite.setAttribute('title', 'Favorite card');
+        // gridRowCardFavorite.classList.add('favorite-card');
+        //
+        // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        // gridRowCardFavorite.onclick = function() {
+        //     // For testing
+        //     console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
+        //     chrome.storage.sync.get(card_key, function (result) {
+        //         // console.log(result);
+        //         console.log(Object.keys(result));
+        //     });
+        //     location.reload(); // This will be helpful for our users
+        // };
+
+
+        // TODO Make this better --- demo to EDIT a card
+        // let card_edit = document.createTextNode('Edit card');
+        // let gridRowCardEdit = document.createElement('a');
+        // gridRowCardEdit.setAttribute('href', '#');
+        // gridRowCardEdit.setAttribute('title', 'Edit card');
+        // gridRowCardEdit.classList.add('edit-card');
+        //
+        // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        // gridRowCardEdit.onclick = function() {
+        //     // For testing
+        //     console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
+        //     chrome.storage.sync.get(card_key, function (result) {
+        //         // console.log(result);
+        //         console.log(Object.keys(result));
+        //     });
+        //     location.reload(); // This will be helpful for our users
+        // };
+
+        // TODO Make this better --- demo to DELETE a card
+        let card_delete = document.createTextNode('Delete forever');
+        let gridRowCardDelete = document.createElement('a');
+        gridRowCardDelete.setAttribute('href', '#');
+        gridRowCardDelete.setAttribute('title', 'Delete forever');
+        gridRowCardDelete.classList.add('delete-card');
+
+        // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        gridRowCardDelete.onclick = function() {
+            // For testing
+            // console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
+            // chrome.storage.sync.get(card_key, function (result) {
+            //     // console.log(result);
+            //     console.log(Object.keys(result));
+            // });
+            chrome.storage.sync.remove([card_key], function (result) {
+                console.log(result);
+                console.log('Card with key of ' + card_key + ' has been removed?')
+            });
+            location.reload(); // This will be helpful for our users
+        };
+
+
+        // Add a title
+        // gridRowCardDelete.title('Delete this thing, yo!');
+
+        // Add a href
+        // gridRowCardDelete.href('#');
+
+        // Give it some class
+        // gridRowCardDelete.classList.add('text-muted');
+
+        // Add the content to it
+        // gridRowCardFavorite.appendChild(card_favorite);
+        // gridRowCardEdit.appendChild(card_edit);
+        gridRowCardDelete.appendChild(card_delete);
+
+
+
+
         // Add the summary as title
         gridRowCardTitle.appendChild(card_summary);
 
@@ -153,34 +246,33 @@ class Accomplishment {
         // Add our status and time to the flex box
         gridRowCardFlexBox.appendChild(gridRowCardBadge);
         gridRowCardFlexBox.appendChild(gridRowCardDate);
+        // gridRowCardFlexBox.appendChild(gridRowCardFavorite);
+        // gridRowCardFlexBox.appendChild(gridRowCardEdit);
+        gridRowCardFlexBox.appendChild(gridRowCardDelete);
 
         // Build the card itself from its components
         gridRowCardBody.appendChild(gridRowCardTitle);
         gridRowCardBody.appendChild(gridRowCardText);
         gridRowCardBody.appendChild(gridRowCardFlexBox);
-        console.log(gridRowCardBody);
+        // console.log(gridRowCardBody);
 
         // Add the card body to the container
         gridRowCardContainer.appendChild(gridRowCardBody);
-        console.log(gridRowCardContainer);
+        // console.log(gridRowCardContainer);
 
         // Add the container to the column
         gridRowColumn.appendChild(gridRowCardContainer);
-        console.log(gridRowColumn);
+        // console.log(gridRowColumn);
 
         // And finally, add the column to the row
         gridRow.appendChild(gridRowColumn);
-        console.log(gridRow);
-
+        // console.log(gridRow);
     }
-
 
 }
 
 
-
 function getItems() {
-
     var accomplishment = new Accomplishment();
 
 
@@ -209,7 +301,7 @@ function getItems() {
             // console.log(accomplishment.timePassedTexttimePassedText)
             // console.log(accomplishment);
             accomplishment.calcDuration();
-            console.log(accomplishment);
+            // console.log(accomplishment);
             accomplishment.buildCard();
             // accomplishment.setBadgeClass();
             // console.log(accomplishment.duration)

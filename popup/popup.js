@@ -84,7 +84,7 @@ function makeThing() {
 }
 
 function openInNewTab() {
-    chrome.tabs.create({url: chrome.extension.getURL('popup/view_storage_cards.html#window')});
+    chrome.tabs.create({url: chrome.extension.getURL('popup/view_all.html#window')});
 }
 
 
