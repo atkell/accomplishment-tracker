@@ -8,6 +8,10 @@
 // 7. Place our key values into the appropriate HTML blocks of our card
 // 8. "Stack" our blocks into the shape of a card and then place it all into the HTML file
 
+document.getElementById("home").addEventListener("click", function () {
+    location.reload();
+    }
+);
 
 class Accomplishment {
 
