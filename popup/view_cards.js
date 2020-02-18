@@ -154,43 +154,43 @@ class Accomplishment {
 
 
         // TODO Make this better --- demo to FAVORITE a card
-        let card_favorite = document.createTextNode('Favorite card');
-        let gridRowCardFavorite = document.createElement('a');
-        gridRowCardFavorite.setAttribute('href', '#');
-        gridRowCardFavorite.setAttribute('title', 'Favorite card');
-        gridRowCardFavorite.classList.add('favorite-card');
-
-        // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
-        // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
-        gridRowCardFavorite.onclick = function() {
-            // For testing
-            console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
-            chrome.storage.sync.get(card_key, function (result) {
-                // console.log(result);
-                console.log(Object.keys(result));
-            });
-            location.reload(); // This will be helpful for our users
-        };
+        // let card_favorite = document.createTextNode('Favorite card');
+        // let gridRowCardFavorite = document.createElement('a');
+        // gridRowCardFavorite.setAttribute('href', '#');
+        // gridRowCardFavorite.setAttribute('title', 'Favorite card');
+        // gridRowCardFavorite.classList.add('favorite-card');
+        //
+        // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        // gridRowCardFavorite.onclick = function() {
+        //     // For testing
+        //     console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
+        //     chrome.storage.sync.get(card_key, function (result) {
+        //         // console.log(result);
+        //         console.log(Object.keys(result));
+        //     });
+        //     location.reload(); // This will be helpful for our users
+        // };
 
 
         // TODO Make this better --- demo to EDIT a card
-        let card_edit = document.createTextNode('Edit card');
-        let gridRowCardEdit = document.createElement('a');
-        gridRowCardEdit.setAttribute('href', '#');
-        gridRowCardEdit.setAttribute('title', 'Edit card');
-        gridRowCardEdit.classList.add('edit-card');
-
-        // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
-        // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
-        gridRowCardEdit.onclick = function() {
-            // For testing
-            console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
-            chrome.storage.sync.get(card_key, function (result) {
-                // console.log(result);
-                console.log(Object.keys(result));
-            });
-            location.reload(); // This will be helpful for our users
-        };
+        // let card_edit = document.createTextNode('Edit card');
+        // let gridRowCardEdit = document.createElement('a');
+        // gridRowCardEdit.setAttribute('href', '#');
+        // gridRowCardEdit.setAttribute('title', 'Edit card');
+        // gridRowCardEdit.classList.add('edit-card');
+        //
+        // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        // gridRowCardEdit.onclick = function() {
+        //     // For testing
+        //     console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
+        //     chrome.storage.sync.get(card_key, function (result) {
+        //         // console.log(result);
+        //         console.log(Object.keys(result));
+        //     });
+        //     location.reload(); // This will be helpful for our users
+        // };
 
         // TODO Make this better --- demo to DELETE a card
         let card_delete = document.createTextNode('Delete forever');
@@ -226,8 +226,8 @@ class Accomplishment {
         // gridRowCardDelete.classList.add('text-muted');
 
         // Add the content to it
-        gridRowCardFavorite.appendChild(card_favorite);
-        gridRowCardEdit.appendChild(card_edit);
+        // gridRowCardFavorite.appendChild(card_favorite);
+        // gridRowCardEdit.appendChild(card_edit);
         gridRowCardDelete.appendChild(card_delete);
 
 
@@ -246,8 +246,8 @@ class Accomplishment {
         // Add our status and time to the flex box
         gridRowCardFlexBox.appendChild(gridRowCardBadge);
         gridRowCardFlexBox.appendChild(gridRowCardDate);
-        gridRowCardFlexBox.appendChild(gridRowCardFavorite);
-        gridRowCardFlexBox.appendChild(gridRowCardEdit);
+        // gridRowCardFlexBox.appendChild(gridRowCardFavorite);
+        // gridRowCardFlexBox.appendChild(gridRowCardEdit);
         gridRowCardFlexBox.appendChild(gridRowCardDelete);
 
         // Build the card itself from its components
