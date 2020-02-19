@@ -153,7 +153,7 @@ class Accomplishment {
         gridRowCardDate.classList.add('text-muted');
 
 
-        // TODO Make this better --- demo to FAVORITE a card
+        // // TODO Make this better --- demo to FAVORITE a card
         // let card_favorite = document.createTextNode('Favorite card');
         // let gridRowCardFavorite = document.createElement('a');
         // gridRowCardFavorite.setAttribute('href', '#');
@@ -174,23 +174,20 @@ class Accomplishment {
 
 
         // TODO Make this better --- demo to EDIT a card
-        // let card_edit = document.createTextNode('Edit card');
-        // let gridRowCardEdit = document.createElement('a');
-        // gridRowCardEdit.setAttribute('href', '#');
-        // gridRowCardEdit.setAttribute('title', 'Edit card');
-        // gridRowCardEdit.classList.add('edit-card');
-        //
-        // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
-        // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
-        // gridRowCardEdit.onclick = function() {
-        //     // For testing
-        //     console.log('This card has a card_key of ' + card_key + ' which is of type ' + typeof card_key);
-        //     chrome.storage.sync.get(card_key, function (result) {
-        //         // console.log(result);
-        //         console.log(Object.keys(result));
-        //     });
-        //     location.reload(); // This will be helpful for our users
-        // };
+        let card_edit = document.createTextNode('Edit card');
+        let gridRowCardEdit = document.createElement('a');
+        gridRowCardEdit.setAttribute('href', '#');
+        gridRowCardEdit.setAttribute('title', 'Edit card');
+        gridRowCardEdit.classList.add('edit-card');
+
+        // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
+        // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
+        gridRowCardEdit.onclick = function() {
+            // One way to get the ID of the card into the edit_card html is to send it as a
+            // query string parameter...
+            let url = 'edit_card.html?id=' + encodeURIComponent(card_key);
+            window.open(url);
+        };
 
         // TODO Make this better --- demo to DELETE a card
         let card_delete = document.createTextNode('Delete forever');
@@ -227,7 +224,7 @@ class Accomplishment {
 
         // Add the content to it
         // gridRowCardFavorite.appendChild(card_favorite);
-        // gridRowCardEdit.appendChild(card_edit);
+        gridRowCardEdit.appendChild(card_edit);
         gridRowCardDelete.appendChild(card_delete);
 
 
@@ -247,7 +244,7 @@ class Accomplishment {
         gridRowCardFlexBox.appendChild(gridRowCardBadge);
         gridRowCardFlexBox.appendChild(gridRowCardDate);
         // gridRowCardFlexBox.appendChild(gridRowCardFavorite);
-        // gridRowCardFlexBox.appendChild(gridRowCardEdit);
+        gridRowCardFlexBox.appendChild(gridRowCardEdit);
         gridRowCardFlexBox.appendChild(gridRowCardDelete);
 
         // Build the card itself from its components
@@ -279,8 +276,6 @@ function getItems() {
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
 
-        // We're not doing anything with this yet...but maybe we will want to down the road when we add filtering
-        // or search.
 
         // let keysInStorage = Object.keys(result);
         let storageBox = Object.values(result);
