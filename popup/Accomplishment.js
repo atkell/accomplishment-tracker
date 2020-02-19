@@ -39,16 +39,6 @@ class Accomplishment {
         this._date = value;
     }
 
-    populateFormFields(value) {
-
-        chrome.storage.sync.get([value], function (result) {
-            console.log(result);
-        });
-
-        document.getElementById('summary').value = this._summary;
-
-    }
-
     save() {
         console.log("Hooray! We just called our save method inside the Accomplishment class");
 
@@ -138,11 +128,9 @@ class Accomplishment {
     }
 
     buildCard() {
-
+        let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
-        // let card_key = document.createTextNode(this._date); // we'll need this to update or remove this card
-        let card_key = this._date; // we'll need this to update or remove this card
         let card_status = document.createTextNode(this._status);
         let card_duration = document.createTextNode(this._duration);
 
@@ -179,6 +167,9 @@ class Accomplishment {
         // Create the status badge: <span class="badge badge-primary">
         let gridRowCardBadge = document.createElement('span');
         gridRowCardBadge.classList.add('badge');
+
+        // TODO This is causing an error: TypeError: Cannot read property 'includes' of undefined
+        //     at Accomplishment.buildCard...yet it still works?
         if (this._status.includes('In Progress')) {
             gridRowCardBadge.classList.add('badge-primary');
         } else if (this._status.includes('On Hold')) {
