@@ -101,7 +101,7 @@ class Accomplishment {
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
         // let card_key = document.createTextNode(this._date); // we'll need this to update or remove this card
-        let card_key = this._date.toString(); // we'll need this to update or remove this card
+        let card_key = this._date; // we'll need this to update or remove this card
         let card_status = document.createTextNode(this._status);
         let card_duration = document.createTextNode(this._duration);
 
@@ -205,7 +205,7 @@ class Accomplishment {
             //     // console.log(result);
             //     console.log(Object.keys(result));
             // });
-            chrome.storage.sync.remove([card_key], function (result) {
+            chrome.storage.sync.remove([card_key.toString()], function (result) {
                 console.log(result);
                 console.log('Card with key of ' + card_key + ' has been removed?')
             });
