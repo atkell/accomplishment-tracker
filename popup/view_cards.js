@@ -21,10 +21,12 @@ function getItems() {
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
 
+        // This is how we could sort based on value
+        let unsortedValues = Object.values(result);
 
-        // let keysInStorage = Object.keys(result);
-        let storageBox = Object.values(result);
-
+        let storageBox = unsortedValues.sort(function (a, b) {
+            return b[2]['date'] - a[2]['date'];
+        });
 
         for (let i = 0; i < storageBox.length; i++) {
             accomplishment.summary = storageBox[i][0]['summary'];
