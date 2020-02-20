@@ -57,7 +57,7 @@ class Accomplishment {
         });
 
         // Go ahead and close the popup and open a new tab to show the user the item
-        // openInNewTab();
+        openInNewTab();
     }
 
     parseURLforID() {
@@ -106,20 +106,17 @@ class Accomplishment {
         var durationInMinutes = Math.round(((Date.now() - this._date) / 60000));
         // console.log(durationInMinutes);
 
-        var suffix = '';
-
         if (durationInMinutes > 60) {
             var durationInMinutes = Math.round(durationInMinutes / 60);
-            var unitOfTime = 'hour';
+            var unitOfTime = 'hours ago';
         } else if (durationInMinutes < 60 && durationInMinutes > 1) {
-            var unitOfTime = 'minute';
-            var suffix = 's'
+            var unitOfTime = 'minutes ago';
         } else {
-            var durationInMinutes = 1;
-            var unitOfTime = 'minute';
+            var durationInMinutes = '';
+            var unitOfTime = 'Just now';
         }
 
-        var durationText = 'Posted ' + durationInMinutes + ' ' + unitOfTime + suffix + ' ago';
+        var durationText = durationInMinutes + ' ' + unitOfTime;
         // console.log(this._duration(durationText));
         // console.log(durationText);
         this._duration = durationText;
@@ -170,14 +167,14 @@ class Accomplishment {
 
         // TODO This is causing an error: TypeError: Cannot read property 'includes' of undefined
         //     at Accomplishment.buildCard...yet it still works?
-        if (this._status.includes('In Progress')) {
+        if (this._status.includes('Cheerful')) {
             gridRowCardBadge.classList.add('badge-primary');
-        } else if (this._status.includes('On Hold')) {
-            gridRowCardBadge.classList.add('badge-warning');
-        } else if (this._status.includes('Won\'t Do')) {
+        } else if (this._status.includes('Reflective')) {
+            gridRowCardBadge.classList.add('badge-secondary');
+        } else if (this._status.includes('Gloomy')) {
             gridRowCardBadge.classList.add('badge-danger');
         } else {
-            gridRowCardBadge.classList.add('badge-success');
+            gridRowCardBadge.classList.add('badge-warning');
         }
 
         // Create the duration: <small class="text-muted">
