@@ -125,6 +125,8 @@ class Accomplishment {
     }
 
     buildCard() {
+        // TODO Check out card columns as an alternate layout at https://getbootstrap.com/docs/4.0/components/card/#card-columns,
+        // https://masonry.desandro.com/ or the card deck layout: https://getbootstrap.com/docs/4.0/components/card/#card-columns
         let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
@@ -177,9 +179,15 @@ class Accomplishment {
             gridRowCardBadge.classList.add('badge-warning');
         }
 
+        // Duration
+        let gridRowCardDateText = document.createElement('p');
+        gridRowCardDateText.classList.add('card-text');
+        gridRowCardDateText.classList.add('mt-3');
         // Create the duration: <small class="text-muted">
         let gridRowCardDate = document.createElement('small');
         gridRowCardDate.classList.add('text-muted');
+        gridRowCardDate.appendChild(card_duration);
+        gridRowCardDateText.appendChild(gridRowCardDate);
 
 
         // // TODO Make this better --- demo to FAVORITE a card
@@ -267,11 +275,11 @@ class Accomplishment {
 
         // Add our status as badge, time as time
         gridRowCardBadge.appendChild(card_status);
-        gridRowCardDate.appendChild(card_duration);
+        // gridRowCardDate.appendChild(card_duration);
 
         // Add our status and time to the flex box
         gridRowCardFlexBox.appendChild(gridRowCardBadge);
-        gridRowCardFlexBox.appendChild(gridRowCardDate);
+        // gridRowCardFlexBox.appendChild(gridRowCardDate);
         // gridRowCardFlexBox.appendChild(gridRowCardFavorite);
         gridRowCardFlexBox.appendChild(gridRowCardEdit);
         gridRowCardFlexBox.appendChild(gridRowCardDelete);
@@ -280,6 +288,7 @@ class Accomplishment {
         gridRowCardBody.appendChild(gridRowCardTitle);
         gridRowCardBody.appendChild(gridRowCardText);
         gridRowCardBody.appendChild(gridRowCardFlexBox);
+        gridRowCardBody.appendChild(gridRowCardDateText);
         // console.log(gridRowCardBody);
 
         // Add the card body to the container
