@@ -9,11 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
 
-        // This is how we could sort based on value, so that the newest item appears first in our grid
-        let unsortedValues = Object.values(result);
-        let storageBox = unsortedValues.sort(function (a, b) {
-            return b[2]['date'] - a[2]['date'];
-        });
+        let storageBox = accomplishment.sortByCreatedDate(result);
 
         for (let i = 0; i < storageBox.length; i++) {
             accomplishment.summary = storageBox[i][0]['summary'];

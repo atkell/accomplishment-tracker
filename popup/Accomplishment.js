@@ -39,6 +39,14 @@ class Accomplishment {
         this._date = value;
     }
 
+    sortByCreatedDate(value) {
+        let unsortedValues = Object.values(value);
+        let storageBox = unsortedValues.sort(function (a, b) {
+            return b[2]['date'] - a[2]['date'];
+        });
+        return storageBox;
+    }
+
     save() {
         console.log("Hooray! We just called our save method inside the Accomplishment class");
 
