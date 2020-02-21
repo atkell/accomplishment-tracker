@@ -4,7 +4,7 @@ document.getElementById("home").addEventListener("click", function () {
 );
 
 document.addEventListener("DOMContentLoaded", function() {
-    var accomplishment = new Accomplishment();
+    const accomplishment = new Accomplishment();
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
             accomplishment.status = storageBox[i][3]['status'];
             accomplishment.duration = 0;
             accomplishment.calcDuration();
-            accomplishment.buildCard();
+            accomplishment.buildCardColumns();
         }
     });
 });

@@ -199,11 +199,11 @@ class Accomplishment {
 
 
         // // TODO Make this better --- demo to FAVORITE a card
-        // let card_favorite = document.createTextNode('Favorite card');
-        // let gridRowCardFavorite = document.createElement('a');
-        // gridRowCardFavorite.setAttribute('href', '#');
-        // gridRowCardFavorite.setAttribute('title', 'Favorite card');
-        // gridRowCardFavorite.classList.add('favorite-card');
+        let card_favorite = document.createTextNode('Favorite card');
+        let gridRowCardFavorite = document.createElement('a');
+        gridRowCardFavorite.setAttribute('href', '#');
+        gridRowCardFavorite.setAttribute('title', 'Favorite card');
+        gridRowCardFavorite.classList.add('favorite-card');
         //
         // // Getting this working was tricky as hell. Finally found inspiration for the solution in the getting started
         // // guide of all places: https://developer.chrome.com/extensions/getstarted#logic
@@ -311,4 +311,87 @@ class Accomplishment {
         gridRow.appendChild(gridRowColumn);
         // console.log(gridRow);
     }
+
+    buildCardDeck() {}
+
+    buildCardColumns() {
+
+        let card_key = this._date;
+        let card_summary = document.createTextNode(this._summary);
+        let card_details = document.createTextNode(this._details);
+        let card_status = document.createTextNode(this._status);
+        let card_duration = document.createTextNode(this._duration);
+
+        // <div class="card-columns">
+        let divCardColumns = document.getElementById('card-columns');
+        // let divCardColumns = document.getElementsByClassName('card-columns');
+
+        // <div class="card mt-4">
+        let divCardContainer = document.createElement('div');
+        divCardContainer.classList.add('card');
+
+        // <div class="card-body">
+        let divCardBody = document.createElement('div');
+        divCardBody.classList.add('card-body');
+
+        // <h5 class="card-title">
+        let h5CardTitle = document.createElement('h5');
+        h5CardTitle.classList.add('card-title');
+        h5CardTitle.classList.add('serif');
+        h5CardTitle.classList.add('mb-1');
+        h5CardTitle.appendChild(card_summary);
+
+        // <p class="card-text">
+        let pCardDetailsText = document.createElement('p');
+        pCardDetailsText.classList.add('card-text');
+        pCardDetailsText.classList.add('serif');
+        pCardDetailsText.appendChild(card_details);
+
+        // 2 column row beneath title
+        let divRow = document.createElement('div');
+        divRow.classList.add('row');
+        divRow.classList.add('mb-3');
+        let divColSm1 = document.createElement('div'); // Duration
+        divColSm1.classList.add('col-sm');
+        let divColSm2 = document.createElement('div'); // Favorite
+        divColSm2.classList.add('col-sm');
+
+        // <p class="card-text">
+        let pCardDurationText = document.createElement('p');
+        pCardDurationText.classList.add('card-text');
+
+
+        // <small class="text-muted">
+        let smallCardDurationText = document.createElement('small');
+        smallCardDurationText.classList.add('text-muted');
+        smallCardDurationText.classList.add('sans-serif');
+        smallCardDurationText.appendChild(card_duration);
+        // pCardDurationText.appendChild(smallCardDurationText);
+        divColSm1.appendChild(smallCardDurationText);
+
+        let cardFavorite = document.createElement('a');
+        cardFavorite.setAttribute('href', '#');
+        cardFavorite.setAttribute('title', 'Favorite card');
+        cardFavorite.classList.add('favorite-card');
+        divColSm2.appendChild(cardFavorite);
+        // pCardDurationText.append(cardFavorite);
+
+        divRow.appendChild(divColSm1);
+        divRow.appendChild(divColSm2);
+
+        // Build the card from its various lego bricks
+        divCardBody.appendChild(h5CardTitle);
+        divCardBody.appendChild(divRow);
+        divCardBody.appendChild(pCardDetailsText);
+
+        // console.log(divCardBody);
+
+        // And add it to the card container, then card column div
+        divCardContainer.appendChild(divCardBody);
+        console.log(divCardContainer);
+        divCardColumns.appendChild(divCardContainer);
+
+
+    }
+
 }
