@@ -5,16 +5,16 @@ document.getElementById("home").addEventListener("click", function () {
 
 document.addEventListener("DOMContentLoaded", function() {
 
-    const updatedAccomplishment = new Accomplishment();
-    let card_id = updatedAccomplishment.parseURLforID();
-    updatedAccomplishment.update(card_id);
+    const accomplishment = new Accomplishment();
+    let card_id = accomplishment.parseURLforID();
+    accomplishment.update(card_id);
 
     document.getElementById("update").addEventListener("click", function() {
-        updatedAccomplishment.summary = document.getElementById('summary').value;
-        updatedAccomplishment.status = document.getElementById('status').value;
-        updatedAccomplishment.details = document.getElementById('details').value;
-        updatedAccomplishment.date = card_id;
-        updatedAccomplishment.save();
+        accomplishment.summary = document.getElementById('summary').value;
+        accomplishment.status = document.getElementById('status').value;
+        accomplishment.details = document.getElementById('details').value;
+        accomplishment.date = card_id;
+        accomplishment.save();
     });
 
 });

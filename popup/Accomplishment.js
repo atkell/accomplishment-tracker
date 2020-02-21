@@ -132,6 +132,18 @@ class Accomplishment {
 
     }
 
+    findMood() {
+        if (this._status.includes('Cheerful')) {
+            return 'badge-primary';
+        } else if (this._status.includes('Reflective')) {
+            return 'badge-secondary';
+        } else if (this._status.includes('Gloomy')) {
+            return 'badge-danger';
+        } else {
+            return 'badge-warning';
+        }
+    }
+
     buildCard() {
         // TODO Check out card columns as an alternate layout at https://getbootstrap.com/docs/4.0/components/card/#card-columns,
         // https://masonry.desandro.com/ or the card deck layout: https://getbootstrap.com/docs/4.0/components/card/#card-columns
@@ -355,13 +367,23 @@ class Accomplishment {
         divColSm1.classList.add('col-sm');
         let divColSm2 = document.createElement('div'); // Favorite
         divColSm2.classList.add('col-sm');
+        divColSm2.classList.add('text-right');
+
+        // 2 column row beneath card detail text
+        let divRow2 = document.createElement('div');
+        divRow2.classList.add('row');
+        divRow2.classList.add('mb-0');
+        let divColSm3 = document.createElement('div'); // Mood
+        divColSm3.classList.add('col-sm');
+        let divColSm4 = document.createElement('div'); // More Actions
+        divColSm4.classList.add('col-sm');
+        divColSm4.classList.add('text-right');
 
         // <p class="card-text">
         let pCardDurationText = document.createElement('p');
         pCardDurationText.classList.add('card-text');
 
-
-        // <small class="text-muted">
+        // Duration between Date.now() and then <small class="text-muted">
         let smallCardDurationText = document.createElement('small');
         smallCardDurationText.classList.add('text-muted');
         smallCardDurationText.classList.add('sans-serif');
@@ -369,20 +391,94 @@ class Accomplishment {
         // pCardDurationText.appendChild(smallCardDurationText);
         divColSm1.appendChild(smallCardDurationText);
 
-        let cardFavorite = document.createElement('a');
-        cardFavorite.setAttribute('href', '#');
-        cardFavorite.setAttribute('title', 'Favorite card');
-        cardFavorite.classList.add('favorite-card');
-        divColSm2.appendChild(cardFavorite);
-        // pCardDurationText.append(cardFavorite);
+        // Favorite a card
+        let cardNotFavorite = document.createElement('i');
+        cardNotFavorite.classList.add('material-icons');
+        cardNotFavorite.classList.add('md-18');
+        cardNotFavorite.classList.add('md-dark');
+        cardNotFavorite.classList.add('favorite');
+        cardNotFavorite.setAttribute('id', 'favorite');
+        cardNotFavorite.innerHTML = 'favorite_border';
+        divColSm2.appendChild(cardNotFavorite);
 
+        // Mood
+        let cardMoodBadge = document.createElement('span');
+        cardMoodBadge.classList.add('badge');
+        let mood = this.findMood();
+        cardMoodBadge.classList.add(mood);
+        cardMoodBadge.appendChild(card_status);
+        divColSm3.appendChild(cardMoodBadge);
+
+
+
+
+
+        // More actions
+        let cardMoreActionsButtonDiv = document.createElement('div');
+        cardMoreActionsButtonDiv.classList.add('dropdown');
+
+        let cardMoreActionsButton = document.createElement('button');
+        // We will need some custom CSS here for sure
+        cardMoreActionsButton.classList.add('btn');
+        cardMoreActionsButton.classList.add('btn-light');
+        cardMoreActionsButton.classList.add('btn-sm');
+        cardMoreActionsButton.classList.add('dropdown-toggle');
+        cardMoreActionsButton.setAttribute('type', 'button');
+        cardMoreActionsButton.setAttribute('data-toggle', 'dropdown');
+        cardMoreActionsButton.setAttribute('aria-haspopup', 'true');
+        cardMoreActionsButton.setAttribute('aria-expanded', 'false');
+
+
+        let cardMoreActions = document.createElement('i');
+        cardMoreActions.classList.add('material-icons');
+        cardMoreActions.classList.add('md-18');
+        cardMoreActions.classList.add('md-dark');
+        cardMoreActions.setAttribute('id', 'edit_delete');
+        cardMoreActions.innerHTML = 'more_horiz';
+
+
+        let cardMoreActionsDivDropdownMenu = document.createElement('div');
+        cardMoreActionsDivDropdownMenu.classList.add('dropdown-menu');
+        cardMoreActionsDivDropdownMenu.setAttribute('aria-labelledby', 'dropdownMenuLink');
+        let cardMoreActionsEdit = document.createElement('a');
+        cardMoreActionsEdit.classList.add('dropdown-item');
+        cardMoreActionsEdit.classList.add('text-muted');
+        cardMoreActionsEdit.classList.add('sans-serif');
+        cardMoreActionsEdit.setAttribute('href', '#');
+        cardMoreActionsEdit.innerText = 'Edit';
+        let cardMoreActionsDelete = document.createElement('a');
+        cardMoreActionsDelete.classList.add('dropdown-item');
+        cardMoreActionsDelete.classList.add('text-muted');
+        cardMoreActionsDelete.classList.add('sans-serif');
+        cardMoreActionsDelete.setAttribute('href', '#');
+        cardMoreActionsDelete.innerText = 'Delete';
+        cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsEdit);
+        cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsDelete);
+
+
+
+        cardMoreActionsButton.appendChild(cardMoreActions);
+        cardMoreActionsButtonDiv.appendChild(cardMoreActionsButton);
+        cardMoreActionsButtonDiv.appendChild(cardMoreActionsDivDropdownMenu);
+        divColSm4.appendChild(cardMoreActionsButtonDiv);
+
+
+
+
+
+
+
+        // Build the rows
         divRow.appendChild(divColSm1);
         divRow.appendChild(divColSm2);
+        divRow2.appendChild(divColSm3);
+        divRow2.appendChild(divColSm4);
 
         // Build the card from its various lego bricks
         divCardBody.appendChild(h5CardTitle);
         divCardBody.appendChild(divRow);
         divCardBody.appendChild(pCardDetailsText);
+        divCardBody.appendChild(divRow2);
 
         // console.log(divCardBody);
 

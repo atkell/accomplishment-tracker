@@ -1,16 +1,16 @@
-document.getElementById("add").addEventListener("click", makeThing);
+document.getElementById("add").addEventListener("click", createNewObject);
 document.getElementById("view").addEventListener("click", openInNewTab);
 document.getElementById("delete").addEventListener("click", clearAllItems);
 
-function makeThing() {
+function createNewObject() {
 
-    const newAccomplishment = new Accomplishment(
+    const accomplishment = new Accomplishment(
         document.getElementById('summary').value,
         document.getElementById('status').value,
         document.getElementById('details').value,
         Date.now()
     );
-    newAccomplishment.save();
+    accomplishment.save();
 }
 
 function openInNewTab() {
