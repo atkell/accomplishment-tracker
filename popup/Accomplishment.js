@@ -144,6 +144,10 @@ class Accomplishment {
         }
     }
 
+    edit(value) {}
+
+    delete(value) {}
+
     buildCard() {
         // TODO Check out card columns as an alternate layout at https://getbootstrap.com/docs/4.0/components/card/#card-columns,
         // https://masonry.desandro.com/ or the card deck layout: https://getbootstrap.com/docs/4.0/components/card/#card-columns
@@ -440,12 +444,25 @@ class Accomplishment {
         let cardMoreActionsDivDropdownMenu = document.createElement('div');
         cardMoreActionsDivDropdownMenu.classList.add('dropdown-menu');
         cardMoreActionsDivDropdownMenu.setAttribute('aria-labelledby', 'dropdownMenuLink');
+
+
+
+        // TODO EDIT
         let cardMoreActionsEdit = document.createElement('a');
         cardMoreActionsEdit.classList.add('dropdown-item');
         cardMoreActionsEdit.classList.add('text-muted');
         cardMoreActionsEdit.classList.add('sans-serif');
         cardMoreActionsEdit.setAttribute('href', '#');
         cardMoreActionsEdit.innerText = 'Edit';
+        cardMoreActionsEdit.onclick = function() {
+            // One way to get the ID of the card into the edit_card html is to send it as a
+            // query string parameter...
+            let url = 'edit_card.html?id=' + encodeURIComponent(card_key);
+            window.open(url);
+        };
+
+
+        // TODO DELETE
         let cardMoreActionsDelete = document.createElement('a');
         cardMoreActionsDelete.classList.add('dropdown-item');
         cardMoreActionsDelete.classList.add('text-muted');
