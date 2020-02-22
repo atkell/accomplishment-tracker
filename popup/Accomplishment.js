@@ -342,7 +342,6 @@ class Accomplishment {
     buildCardDeck() {}
 
     buildCardColumns() {
-
         let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
@@ -351,7 +350,6 @@ class Accomplishment {
 
         // <div class="card-columns">
         let divCardColumns = document.getElementById('card-columns');
-        // let divCardColumns = document.getElementsByClassName('card-columns');
 
         // <div class="card mt-4">
         let divCardContainer = document.createElement('div');
@@ -403,7 +401,6 @@ class Accomplishment {
         smallCardDurationText.classList.add('text-muted');
         smallCardDurationText.classList.add('sans-serif');
         smallCardDurationText.appendChild(card_duration);
-        // pCardDurationText.appendChild(smallCardDurationText);
         divColSm1.appendChild(smallCardDurationText);
 
         // Favorite a card
@@ -424,16 +421,11 @@ class Accomplishment {
         cardMoodBadge.appendChild(card_status);
         divColSm3.appendChild(cardMoodBadge);
 
-
-
-
-
         // More actions
         let cardMoreActionsButtonDiv = document.createElement('div');
         cardMoreActionsButtonDiv.classList.add('dropdown');
 
         let cardMoreActionsButton = document.createElement('button');
-        // We will need some custom CSS here for sure
         cardMoreActionsButton.classList.add('btn');
         cardMoreActionsButton.classList.add('btn-light');
         cardMoreActionsButton.classList.add('btn-sm');
@@ -443,7 +435,6 @@ class Accomplishment {
         cardMoreActionsButton.setAttribute('aria-haspopup', 'true');
         cardMoreActionsButton.setAttribute('aria-expanded', 'false');
 
-
         let cardMoreActions = document.createElement('i');
         cardMoreActions.classList.add('material-icons');
         cardMoreActions.classList.add('md-18');
@@ -451,14 +442,11 @@ class Accomplishment {
         cardMoreActions.setAttribute('id', 'edit_delete');
         cardMoreActions.innerHTML = 'more_horiz';
 
-
         let cardMoreActionsDivDropdownMenu = document.createElement('div');
         cardMoreActionsDivDropdownMenu.classList.add('dropdown-menu');
         cardMoreActionsDivDropdownMenu.setAttribute('aria-labelledby', 'dropdownMenuLink');
 
-
-
-        // TODO EDIT
+        // Edit a card
         let cardMoreActionsEdit = document.createElement('a');
         cardMoreActionsEdit.classList.add('dropdown-item');
         cardMoreActionsEdit.classList.add('text-muted');
@@ -467,8 +455,7 @@ class Accomplishment {
         cardMoreActionsEdit.innerText = 'Edit';
         this.edit(cardMoreActionsEdit, card_key);
 
-
-        // TODO DELETE
+        // Delete a card
         let cardMoreActionsDelete = document.createElement('a');
         cardMoreActionsDelete.classList.add('dropdown-item');
         cardMoreActionsDelete.classList.add('text-muted');
@@ -477,22 +464,12 @@ class Accomplishment {
         cardMoreActionsDelete.innerText = 'Delete';
         this.delete(cardMoreActionsDelete, card_key);
 
-        
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsEdit);
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsDelete);
-
-
-
         cardMoreActionsButton.appendChild(cardMoreActions);
         cardMoreActionsButtonDiv.appendChild(cardMoreActionsButton);
         cardMoreActionsButtonDiv.appendChild(cardMoreActionsDivDropdownMenu);
         divColSm4.appendChild(cardMoreActionsButtonDiv);
-
-
-
-
-
-
 
         // Build the rows
         divRow.appendChild(divColSm1);
@@ -506,14 +483,9 @@ class Accomplishment {
         divCardBody.appendChild(pCardDetailsText);
         divCardBody.appendChild(divRow2);
 
-        // console.log(divCardBody);
-
         // And add it to the card container, then card column div
         divCardContainer.appendChild(divCardBody);
-        console.log(divCardContainer);
         divCardColumns.appendChild(divCardContainer);
-
-
     }
 
 }
