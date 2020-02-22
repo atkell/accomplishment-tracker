@@ -1,10 +1,11 @@
 class Accomplishment {
 
-    constructor(summary, status, details, date) {
+    constructor(summary, status, details, date, favorite) {
         this._summary = summary;
         this._status = status;
         this._details = details;
         this._date = date;
+        this._favorite = favorite;
     }
 
     get summary() {
@@ -159,6 +160,7 @@ class Accomplishment {
 
     }
 
+    // Has been replaced by buildCardColumns, remove?
     buildCard() {
         // TODO Check out card columns as an alternate layout at https://getbootstrap.com/docs/4.0/components/card/#card-columns,
         // https://masonry.desandro.com/ or the card deck layout: https://getbootstrap.com/docs/4.0/components/card/#card-columns
@@ -421,7 +423,7 @@ class Accomplishment {
         cardMoodBadge.appendChild(card_status);
         divColSm3.appendChild(cardMoodBadge);
 
-        // More actions
+        // More actions drop-down menu
         let cardMoreActionsButtonDiv = document.createElement('div');
         cardMoreActionsButtonDiv.classList.add('dropdown');
 
@@ -439,6 +441,7 @@ class Accomplishment {
         cardMoreActions.classList.add('material-icons');
         cardMoreActions.classList.add('md-18');
         cardMoreActions.classList.add('md-dark');
+        cardMoreActions.setAttribute('data-toggle', 'dropdown');
         cardMoreActions.setAttribute('id', 'edit_delete');
         cardMoreActions.innerHTML = 'more_horiz';
 
@@ -449,7 +452,6 @@ class Accomplishment {
         // Edit a card
         let cardMoreActionsEdit = document.createElement('a');
         cardMoreActionsEdit.classList.add('dropdown-item');
-        cardMoreActionsEdit.classList.add('text-muted');
         cardMoreActionsEdit.classList.add('sans-serif');
         cardMoreActionsEdit.setAttribute('href', '#');
         cardMoreActionsEdit.innerText = 'Edit';
@@ -458,7 +460,6 @@ class Accomplishment {
         // Delete a card
         let cardMoreActionsDelete = document.createElement('a');
         cardMoreActionsDelete.classList.add('dropdown-item');
-        cardMoreActionsDelete.classList.add('text-muted');
         cardMoreActionsDelete.classList.add('sans-serif');
         cardMoreActionsDelete.setAttribute('href', '#');
         cardMoreActionsDelete.innerText = 'Delete';
@@ -466,8 +467,9 @@ class Accomplishment {
 
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsEdit);
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsDelete);
-        cardMoreActionsButton.appendChild(cardMoreActions);
-        cardMoreActionsButtonDiv.appendChild(cardMoreActionsButton);
+        // cardMoreActionsButton.appendChild(cardMoreActions);
+        // cardMoreActionsButtonDiv.appendChild(cardMoreActionsButton);
+        cardMoreActionsButtonDiv.appendChild(cardMoreActions);
         cardMoreActionsButtonDiv.appendChild(cardMoreActionsDivDropdownMenu);
         divColSm4.appendChild(cardMoreActionsButtonDiv);
 
