@@ -144,7 +144,14 @@ class Accomplishment {
         }
     }
 
-    edit(value) {}
+    edit(element, value) {
+        element.onclick = function() {
+            // One way to get the ID of the card into the edit_card html is to send it as a
+            // query string parameter...
+            let url = 'edit_card.html?id=' + encodeURIComponent(value);
+            window.open(url);
+        };
+    }
 
     delete(value) {}
 
@@ -454,12 +461,13 @@ class Accomplishment {
         cardMoreActionsEdit.classList.add('sans-serif');
         cardMoreActionsEdit.setAttribute('href', '#');
         cardMoreActionsEdit.innerText = 'Edit';
-        cardMoreActionsEdit.onclick = function() {
-            // One way to get the ID of the card into the edit_card html is to send it as a
-            // query string parameter...
-            let url = 'edit_card.html?id=' + encodeURIComponent(card_key);
-            window.open(url);
-        };
+        // cardMoreActionsEdit.onclick = function() {
+        //     // One way to get the ID of the card into the edit_card html is to send it as a
+        //     // query string parameter...
+        //     let url = 'edit_card.html?id=' + encodeURIComponent(card_key);
+        //     window.open(url);
+        // };
+        this.edit(cardMoreActionsEdit, card_key);
 
 
         // TODO DELETE
