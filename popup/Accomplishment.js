@@ -146,14 +146,18 @@ class Accomplishment {
 
     edit(element, value) {
         element.onclick = function() {
-            // One way to get the ID of the card into the edit_card html is to send it as a
-            // query string parameter...
             let url = 'edit_card.html?id=' + encodeURIComponent(value);
             window.open(url);
         };
     }
 
-    delete(value) {}
+    delete(element, value) {
+        element.onclick = function() {
+            chrome.storage.sync.remove([value.toString()], function (result) {});
+        location.reload();
+        };
+
+    }
 
     buildCard() {
         // TODO Check out card columns as an alternate layout at https://getbootstrap.com/docs/4.0/components/card/#card-columns,
@@ -461,12 +465,6 @@ class Accomplishment {
         cardMoreActionsEdit.classList.add('sans-serif');
         cardMoreActionsEdit.setAttribute('href', '#');
         cardMoreActionsEdit.innerText = 'Edit';
-        // cardMoreActionsEdit.onclick = function() {
-        //     // One way to get the ID of the card into the edit_card html is to send it as a
-        //     // query string parameter...
-        //     let url = 'edit_card.html?id=' + encodeURIComponent(card_key);
-        //     window.open(url);
-        // };
         this.edit(cardMoreActionsEdit, card_key);
 
 
@@ -477,6 +475,9 @@ class Accomplishment {
         cardMoreActionsDelete.classList.add('sans-serif');
         cardMoreActionsDelete.setAttribute('href', '#');
         cardMoreActionsDelete.innerText = 'Delete';
+        this.delete(cardMoreActionsDelete, card_key);
+
+        
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsEdit);
         cardMoreActionsDivDropdownMenu.appendChild(cardMoreActionsDelete);
 
