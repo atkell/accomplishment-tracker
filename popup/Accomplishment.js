@@ -40,6 +40,14 @@ class Accomplishment {
         this._date = value;
     }
 
+    get favorite() {
+        return this._favorite;
+    }
+
+    set favorite(value) {
+        this._favorite = value;
+    }
+
     sortByCreatedDate(value) {
         let unsortedValues = Object.values(value);
         let storageBox = unsortedValues.sort(function (a, b) {
@@ -51,13 +59,12 @@ class Accomplishment {
     save() {
         console.log("Hooray! We just called our save method inside the Accomplishment class");
 
-        // Assemble the body of the accomplishment entry
-        // TODO See if this should be its own method or not
         let body = [];
         body.push({"summary": this._summary});
         body.push({"details": this._details});
         body.push({"date": this._date});
         body.push({"status": this._status});
+        body.push({'favorite': this._favorite});
         console.log(body);
 
         // Save (set) the value
@@ -158,6 +165,62 @@ class Accomplishment {
         location.reload();
         };
 
+    }
+
+    checkFavorite() {
+        // console.log('called the favorite method');
+        // console.log(this._favorite);
+
+        if (this._favorite === true) {
+            return 'favorite';
+            // console.log('yep, thats a favorite alright.');
+        } else {
+            return 'favorite_border';
+            // console.log('not a favoite.');
+        }
+
+        // element.onclick = function () {
+        //     console.log('You clicked the heart for card ID ' + value);
+        //     chrome.storage.sync.get([value.toString()], function (result) {
+        //         const storageBox = Object.values(result);
+        //         const is_favorite = storageBox[0][4]['favorite'];
+        //         console.log(is_favorite);
+        //         // return !!is_favorite; // simplified conditional syntax
+        //         element.innerHTML = 'favorite';
+        //
+        //         if (is_favorite === true) {
+        //             return 'favorite';
+        //         } else {
+        //             return 'favorite_border';
+        //         }
+        //     });
+        //
+        // };
+    }
+
+    heart_old(element, value) {
+        element.onclick = function () {
+            console.log('You clicked the heart for card ID ' + value);
+            this._favorite = true;
+
+            chrome.storage.sync.get([value.toString()], function (result) {
+                const storageBox = Object.values(result);
+                let body = [];
+                body.push({"summary": storageBox[0][0]['summary']});
+                body.push({"details": storageBox[0][1]['details']});
+                body.push({"date": storageBox[0][2]['date']});
+                body.push({"status": storageBox[0][3]['status']});
+                body.push({'favorite': true});
+                chrome.storage.sync.set({[value.toString()]: body});
+            });
+
+            chrome.storage.sync.get([value.toString()], function (result) {
+                const storageBox = Object.values(result);
+                console.log(storageBox);
+            });
+
+            return true;
+        };
     }
 
     // Has been replaced by buildCardColumns, remove?
@@ -406,14 +469,37 @@ class Accomplishment {
         divColSm1.appendChild(smallCardDurationText);
 
         // Favorite a card
-        let cardNotFavorite = document.createElement('i');
-        cardNotFavorite.classList.add('material-icons');
-        cardNotFavorite.classList.add('md-18');
-        cardNotFavorite.classList.add('md-dark');
-        cardNotFavorite.classList.add('favorite');
-        cardNotFavorite.setAttribute('id', 'favorite');
-        cardNotFavorite.innerHTML = 'favorite_border';
-        divColSm2.appendChild(cardNotFavorite);
+        let cardFavorite = document.createElement('a');
+        cardFavorite.setAttribute('href', '#');
+        // cardFavorite.setAttribute('onclick', function() {
+        //     this.heart(card_key);
+        // });
+        cardFavorite.classList.add('material-icons');
+        cardFavorite.classList.add('md-18');
+        cardFavorite.classList.add('md-dark');
+        cardFavorite.classList.add('favorite');
+        cardFavorite.innerHTML = this.checkFavorite();
+
+        // Check if favorite is equal to true
+        // this.isFavorite(cardFavorite, card_key);
+
+
+        // If it is not equal to true, make it possible to set it
+
+        // let hearted = this.heart(cardFavorite, card_key);
+        // // Check what the property of the object is
+        // if (hearted === true) {
+        //     cardFavorite.innerHTML = 'favorite';
+        // } else {
+        //     cardFavorite.innerHTML = 'favorite_border';
+        // }
+
+        // cardFavorite.innerHTML = 'favorite_border';
+        // cardFavorite.setAttribute('id', 'favorite');
+        // cardFavorite.innerHTML = hearted;
+
+        // let love = this.heart(cardFavorite, card_key);
+        divColSm2.appendChild(cardFavorite);
 
         // Mood
         let cardMoodBadge = document.createElement('span');
