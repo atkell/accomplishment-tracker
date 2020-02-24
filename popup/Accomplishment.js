@@ -471,9 +471,7 @@ class Accomplishment {
         // Favorite a card
         let cardFavorite = document.createElement('a');
         cardFavorite.setAttribute('href', '#');
-        // cardFavorite.setAttribute('onclick', function() {
-        //     this.heart(card_key);
-        // });
+        // this.setFavorite(cardMoreActionsEdit, card_key);
         cardFavorite.classList.add('material-icons');
         cardFavorite.classList.add('md-18');
         cardFavorite.classList.add('md-dark');

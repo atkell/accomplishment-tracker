@@ -8,7 +8,8 @@ function createNewObject() {
         document.getElementById('summary').value,
         document.getElementById('status').value,
         document.getElementById('details').value,
-        Date.now()
+        Date.now(),
+        false
     );
     accomplishment.save();
 }
