@@ -196,6 +196,13 @@ class Accomplishment {
         };
     }
 
+    freeSpace() {
+        console.log("testing free space method");
+        chrome.storage.sync.getBytesInUse(null, function (result) {
+            console.log(result);
+        });
+    }
+
     buildCardColumns() {
 
         let card_key = this._date;
