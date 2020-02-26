@@ -15,6 +15,25 @@
             padding: 10px;
             margin: 10px;
         }
+        .storage-used {
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: auto;
+            /*margin-top: auto;*/
+            background-color: #5bbdd6;
+            /*float: left;*/
+        }
+
+        .storage-free {
+            float: left;
+            width: 10px;
+            height: 10px;
+            margin: auto;
+            /*margin-top: auto;*/
+            background-color: #e9ecef;
+            /*float: left;*/
+        }
     </style>
 </head>
 <body>
@@ -54,11 +73,24 @@
             <button type="button" class="btn btn-danger" id="delete">Remove all</button>
         </div>
     </div>
+</div>
 
-    <div class="progress mt-4">
+<div class="container-fluid mt-5">
+    <label for="progressbar">Storage overview</label>
+    <div class="progress">
         <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
+    <div class="row mt-2 ml-auto">
+        <div class="storage-used"></div>
+        <div class="col">
+            <small class="text-muted" id="storage-used">Used (110 bytes)</small>
+        </div>
 
+        <div class="storage-free"></div>
+        <div class="col">
+            <small class="text-muted" id="storage-free">Free (900 bytes)</small>
+        </div>
+    </div>
 </div>
 
 <script src="popup.js"></script>
