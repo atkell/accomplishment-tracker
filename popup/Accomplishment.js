@@ -57,6 +57,16 @@ class Accomplishment {
         return storageBox;
     }
 
+    // TODO
+    sortByFavorites(value) {
+
+        let unsortedValues = Object.values(value);
+        let storageBox = unsortedValues.sort(function (a) {
+            return a[4]['favorite'];
+        });
+        return storageBox;
+    }
+
     save() {
 
         let body = [];

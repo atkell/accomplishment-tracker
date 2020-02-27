@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"
+    >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <style>
+        body {
+            padding: 10px;
+        }
+
+        .delete-card {
+            display: block;
+            text-indent: -9999px;
+            width: 16px;
+            height: 16px;
+            /*background: url(../img/delete_forever-24px.svg);*/
+            /*background: url(../img/remove_circle_outline-24px.svg);*/
+            background: url(../img/clear-24px.svg);
+            background-size: 16px 16px;
+        }
+
+        .edit-card {
+            display: block;
+            text-indent: -9999px;
+            width: 16px;
+            height: 16px;
+            /*background: url(../img/delete_forever-24px.svg);*/
+            /*background: url(../img/remove_circle_outline-24px.svg);*/
+            background: url(../img/edit-24px.svg);
+            background-size: 16px 16px;
+        }
+
+        .favorite-card {
+            display: block;
+            margin-left: auto;
+            text-indent: -9999px;
+            width: 16px;
+            height: 16px;
+            /*background: url(../img/delete_forever-24px.svg);*/
+            /*background: url(../img/remove_circle_outline-24px.svg);*/
+            background: url(../img/favorite_border-24px.svg);
+            background-size: 16px 16px;
+        }
+
+        .card-columns {
+            padding-top: 15px;
+            /*column-count: 3;*/
+        }
+
+        .sans-serif {
+            font-family: sans-serif-font, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+            font-style: normal;
+            font-weight: 300;
+            letter-spacing: normal;
+            /*line-height: 24px;*/
+            color: rgba(0, 0, 0, 0.84);
+        }
+
+        .serif {
+            font-family: content-title-font, Georgia, Cambria, "Times New Roman", Times, serif;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: normal;
+            color: rgba(0, 0, 0, 0.84);
+            line-height: 24px;
+        }
+
+        .navbar-brand {
+            font-size: 40px;
+            line-height: 48px;
+        }
+
+        .nav-item {
+            font-size: 16px;
+        }
+
+        /* Rules for sizing the icon. */
+        .material-icons.md-18 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        .material-icons.md-24 {
+            font-size: 24px;
+            /*line-height: 24px;*/
+        }
+
+        .material-icons.md-dark {
+            color: rgba(0, 0, 0, 0.54);
+        }
+
+        .material-icons.md-dark.md-inactive {
+            color: rgba(0, 0, 0, 0.26);
+        }
+
+        .material-icons.md-dark.favorite {
+            color: #d32f2f;
+            text-decoration: none;
+        }
+
+        .dropdown-item.sans-serif {
+            font-size: 13px;
+            color: rgba(0, 0, 0, 0.84);
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <a class="navbar-brand serif" href="view_all.html" title="Qui court deux lievres a la fois, n’en prend aucun.">
+            🦊 Catchy, friendly title here
+        </a>
+        <ul class="navbar-nav ml-auto mr-2 mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif disabled" href="view_favorites.html">Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif disabled" href="#">Random</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <a href="#" class="btn btn-outline-primary my-2 my-sm-0" role="button" id="export">Export</a>
+        </form>
+    </div>
+</nav>
+
+<!--<div class="container-fluid mt-5">-->
+<!--    <div class="row" id="grid-row"></div>-->
+<!--</div>-->
+
+<div class="container-fluid">
+    <div class="card-columns" id="card-columns"></div>
+</div>
+
+
+<script src="view_cards.js"></script>
+<script src="Accomplishment.js"></script>
+
+<script src="jquery-3.2.1.slim.min.js"></script>
+<script src="popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
+</body>
+</html>
