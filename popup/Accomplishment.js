@@ -239,7 +239,17 @@ class Accomplishment {
                 "quote": "Petit a petit, l’oiseau fait son nid",
                 "author": "Unknown",
                 "source": "French Proverb"
+            },
+            {
+                "quote": "Imagine others complexly",
+                "author": "John Green",
+                "source": "ALAN Conference"
             }
+            // {
+            //     "quote": "",
+            //     "author": "",
+            //     "source": ""
+            // }
         ];
 
         let randomQuote = quotes[this.getRandomInt(0, quotes.length)];
