@@ -213,7 +213,30 @@ class Accomplishment {
         });
     }
 
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    getQuote() {
+
+        let quotes = [
+            'No one belongs here more than you',
+            'Qui court deux lievres a la fois, n’en prend aucun',
+            'Petit a petit, l’oiseau fait son nid'
+
+        ];
+
+        return quotes[this.getRandomInt(0, quotes.length)];
+
+    }
+
     buildCardColumns() {
+
+        // Add a random quote as the navbar-brand
+        document.getElementById('navbar-brand').innerHTML = this.getQuote();
+
 
         let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);
