@@ -15,30 +15,38 @@
             padding: 10px;
             margin: 10px;
         }
-        .storage-used {
-            float: left;
-            width: 10px;
-            height: 10px;
-            margin: auto;
-            /*margin-top: auto;*/
-            background-color: #5bbdd6;
-            /*float: left;*/
-        }
-
-        .storage-free {
-            float: left;
-            width: 10px;
-            height: 10px;
-            margin: auto;
-            /*margin-top: auto;*/
-            background-color: #e9ecef;
-            /*float: left;*/
-        }
     </style>
 </head>
 <body>
 
-<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <a class="navbar-brand serif" href="view_all.html" title="Qui court deux lievres a la fois, n’en prend aucun.">
+            🦊 Renarde
+        </a>
+        <ul class="navbar-nav ml-auto mr-2 mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif disabled" href="#">Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif disabled" href="#">Random</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Export</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid mt-5">
     <div class="row">
         <div class="col-sm">
             <div class="form-group">
@@ -68,32 +76,14 @@
     </div>
     <div class="row">
         <div class="col-sm btn-group-center">
-            <button type="button" class="btn btn-primary" id="add">Add accomplishment</button>
-            <button type="button" class="btn btn-info" id="view">See all</button>
-            <button type="button" class="btn btn-danger" id="delete">Remove all</button>
+            <button type="button" class="btn btn-primary" id="update">Save updates to accomplishment</button>
+<!--            <button type="button" class="btn btn-info" id="view">See all items</button>-->
+<!--            <button type="button" class="btn btn-danger" id="delete">Remove item</button>-->
         </div>
     </div>
 </div>
 
-<div class="container-fluid mt-5">
-    <label for="progressbar">Storage overview</label>
-    <div class="progress">
-        <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>
-    <div class="row mt-2 ml-auto">
-        <div class="storage-used"></div>
-        <div class="col">
-            <small class="text-muted" id="storage-used">Used (110 bytes)</small>
-        </div>
-
-        <div class="storage-free"></div>
-        <div class="col">
-            <small class="text-muted" id="storage-free">Free (900 bytes)</small>
-        </div>
-    </div>
-</div>
-
-<script src="popup.js"></script>
+<script src="edit_card.js"></script>
 <script src="Accomplishment.js"></script>
 </body>
 </html>
