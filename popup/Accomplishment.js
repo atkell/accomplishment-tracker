@@ -213,7 +213,58 @@ class Accomplishment {
         });
     }
 
+    getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    }
+
+    getQuote() {
+        // 'No one belongs here more than you',
+        //     'Qui court deux lievres a la fois, n’en prend aucun',
+        //     'Petit a petit, l’oiseau fait son nid'
+
+        let quotes = [
+            {
+                "quote": "No one belongs here more than you.",
+                "author": "Brené Brown",
+                "source": "Braving the Wilderness"
+            },
+            {
+                "quote": "Qui court deux lievres a la fois, n’en prend aucun",
+                "author": "Unknown",
+                "source": "French Proverb"
+            },
+            {
+                "quote": "Petit a petit, l’oiseau fait son nid",
+                "author": "Unknown",
+                "source": "French Proverb"
+            },
+            {
+                "quote": "Imagine others complexly",
+                "author": "John Green",
+                "source": "ALAN Conference"
+            }
+            // {
+            //     "quote": "",
+            //     "author": "",
+            //     "source": ""
+            // }
+        ];
+
+        let randomQuote = quotes[this.getRandomInt(0, quotes.length)];
+        let quoteValues = Object.values(randomQuote);
+        document.getElementById('quote-text').innerHTML = quoteValues[0];   // Quote text
+        document.getElementById('quote-author').innerHTML = quoteValues[1] + " in <em>" + quoteValues[2] + "</em>"; // Quote author
+
+    }
+
     buildCardColumns() {
+
+        // Add a random quote as the navbar-brand
+        // this.getQuote();
+        // document.getElementById('navbar-brand').innerHTML = this.getQuote();
+
 
         let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);

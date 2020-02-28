@@ -4,7 +4,9 @@
 // );
 
 document.addEventListener("DOMContentLoaded", function() {
+
     const accomplishment = new Accomplishment();
+    accomplishment.getQuote();
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {

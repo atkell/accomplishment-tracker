@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous"
     >
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -73,9 +72,8 @@
         }
 
         .navbar-brand {
-            font-size: 32px;
+            font-size: 30px;
             line-height: 48px;
-            font-style: italic;
         }
 
         .nav-item {
@@ -110,6 +108,11 @@
             font-size: 13px;
             color: rgba(0, 0, 0, 0.84);
         }
+
+        .serif.h2 {
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.26);
+        }
     </style>
 </head>
 <body>
@@ -120,10 +123,8 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <a class="navbar-brand serif" href="view_all.html" title="Qui court deux lievres a la fois, n’en prend aucun.">
-            No one belongs here more than you.
-        </a>
-        <ul class="navbar-nav ml-auto mr-2 mt-2 mt-lg-0">
+        <a class="navbar-brand serif" href="view_all.html" id="navbar-brand" title="">🎁 Accomplishment Box</a>
+        <ul class="navbar-nav ml-auto mr-2 mt-auto mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -141,9 +142,14 @@
     </div>
 </nav>
 
-<!--<div class="container-fluid mt-5">-->
-<!--    <div class="row" id="grid-row"></div>-->
-<!--</div>-->
+<div class="container-fluid mt-3 mb-3">
+    <div class="row justify-content-center">
+        <blockquote class="blockquote">
+            <p class="mb-2 serif h2" id="quote-text"></p>
+            <footer class="blockquote-footer text-center" id="quote-author"></footer>
+        </blockquote>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="card-columns" id="card-columns"></div>
