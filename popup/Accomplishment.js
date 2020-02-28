@@ -244,6 +244,31 @@ class Accomplishment {
                 "quote": "Imagine others complexly",
                 "author": "John Green",
                 "source": "ALAN Conference"
+            },
+            {
+                "quote": "You are an aperture through which the universe is looking at and exploring itself",
+                "author": "Alan W Watts",
+                "source": ""
+            },
+            {
+                "quote": "You're under no obligation to be the same person you were 5 minutes ago",
+                "author": "Alan W Watts",
+                "source": ""
+            },
+            {
+                "quote": "The way to get started is to quit talking and begin doing",
+                "author": "Walt Disney",
+                "source": ""
+            },
+            {
+                "quote": "You never fail until you stop trying",
+                "author": "Albert Einstein ",
+                "source": ""
+            },
+            {
+                "quote": "The universe is always conspiring for your good",
+                "author": "Lexie Burton-Brown",
+                "source": ""
             }
             // {
             //     "quote": "",
@@ -254,8 +279,13 @@ class Accomplishment {
 
         let randomQuote = quotes[this.getRandomInt(0, quotes.length)];
         let quoteValues = Object.values(randomQuote);
-        document.getElementById('quote-text').innerHTML = quoteValues[0];   // Quote text
-        document.getElementById('quote-author').innerHTML = quoteValues[1] + " in <em>" + quoteValues[2] + "</em>"; // Quote author
+        document.getElementById('quote-text').innerHTML = quoteValues[0];
+        if (quoteValues[2] === "") {
+            document.getElementById('quote-author').innerHTML = quoteValues[1];
+        } else {
+            document.getElementById('quote-author').innerHTML = quoteValues[1] + ", <em>" + quoteValues[2] + "</em>";
+        }
+
 
     }
 
