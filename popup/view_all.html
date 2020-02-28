@@ -72,9 +72,8 @@
         }
 
         .navbar-brand {
-            font-size: 32px;
+            font-size: 30px;
             line-height: 48px;
-            font-style: italic;
         }
 
         .nav-item {
@@ -109,6 +108,11 @@
             font-size: 13px;
             color: rgba(0, 0, 0, 0.84);
         }
+
+        .serif.h2 {
+            font-style: italic;
+            color: rgba(0, 0, 0, 0.26);
+        }
     </style>
 </head>
 <body>
@@ -119,7 +123,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <a class="navbar-brand serif" href="view_all.html" id="navbar-brand" title=""></a>
+        <a class="navbar-brand serif" href="view_all.html" id="navbar-brand" title="">🎁 Accomplishment Box</a>
         <ul class="navbar-nav ml-auto mr-2 mt-auto mt-lg-0">
             <li class="nav-item active">
                 <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
@@ -138,9 +142,14 @@
     </div>
 </nav>
 
-<!--<div class="container-fluid mt-5">-->
-<!--    <div class="row" id="grid-row"></div>-->
-<!--</div>-->
+<div class="container-fluid mt-3 mb-3">
+    <div class="row justify-content-center">
+        <blockquote class="blockquote">
+            <p class="mb-2 serif h2" id="quote-text"></p>
+            <footer class="blockquote-footer text-center" id="quote-author"></footer>
+        </blockquote>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="card-columns" id="card-columns"></div>

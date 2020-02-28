@@ -220,22 +220,40 @@ class Accomplishment {
     }
 
     getQuote() {
+        // 'No one belongs here more than you',
+        //     'Qui court deux lievres a la fois, n’en prend aucun',
+        //     'Petit a petit, l’oiseau fait son nid'
 
         let quotes = [
-            'No one belongs here more than you',
-            'Qui court deux lievres a la fois, n’en prend aucun',
-            'Petit a petit, l’oiseau fait son nid'
-
+            {
+                "quote": "No one belongs here more than you.",
+                "author": "Brené Brown",
+                "source": "Braving the Wilderness"
+            },
+            {
+                "quote": "Qui court deux lievres a la fois, n’en prend aucun",
+                "author": "Unknown",
+                "source": "French Proverb"
+            },
+            {
+                "quote": "Petit a petit, l’oiseau fait son nid",
+                "author": "Unknown",
+                "source": "French Proverb"
+            }
         ];
 
-        return quotes[this.getRandomInt(0, quotes.length)];
+        let randomQuote = quotes[this.getRandomInt(0, quotes.length)];
+        let quoteValues = Object.values(randomQuote);
+        document.getElementById('quote-text').innerHTML = quoteValues[0];   // Quote text
+        document.getElementById('quote-author').innerHTML = quoteValues[1] + " in <em>" + quoteValues[2] + "</em>"; // Quote author
 
     }
 
     buildCardColumns() {
 
         // Add a random quote as the navbar-brand
-        document.getElementById('navbar-brand').innerHTML = this.getQuote();
+        // this.getQuote();
+        // document.getElementById('navbar-brand').innerHTML = this.getQuote();
 
 
         let card_key = this._date;
