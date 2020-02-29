@@ -80,8 +80,7 @@ class Accomplishment {
             console.log('Created new entry!');
         });
 
-        // TODO We can do better than this simple function
-        openInNewTab();
+        this.openNewTab();
     }
 
     parseURLforID() {
@@ -207,9 +206,15 @@ class Accomplishment {
     }
 
     freeSpace() {
-        console.log("testing free space method");
         chrome.storage.sync.getBytesInUse(null, function (result) {
-            console.log(result);
+            let current_storage = result;
+            let max_storage = 102400;
+            let current_storage_as_percent = Math.round(current_storage / max_storage * 100);
+
+            document.getElementById('progressbar').setAttribute('style', 'width: ' + current_storage_as_percent + "%;");
+            document.getElementById('progressbar').setAttribute('aria-valuenow', current_storage_as_percent);
+            document.getElementById('storage-used').innerHTML = "Used ( " + current_storage_as_percent + "% )";
+            document.getElementById('storage-free').innerHTML = "Free ( " + (100 - current_storage_as_percent) + "% )";
         });
     }
 
@@ -220,10 +225,6 @@ class Accomplishment {
     }
 
     getQuote() {
-        // 'No one belongs here more than you',
-        //     'Qui court deux lievres a la fois, n’en prend aucun',
-        //     'Petit a petit, l’oiseau fait son nid'
-
         let quotes = [
             {
                 "quote": "No one belongs here more than you.",
@@ -285,17 +286,13 @@ class Accomplishment {
         } else {
             document.getElementById('quote-author').innerHTML = quoteValues[1] + ", <em>" + quoteValues[2] + "</em>";
         }
+    }
 
-
+    openNewTab() {
+        chrome.tabs.create({url: chrome.extension.getURL('popup/view_all.html#window')});
     }
 
     buildCardColumns() {
-
-        // Add a random quote as the navbar-brand
-        // this.getQuote();
-        // document.getElementById('navbar-brand').innerHTML = this.getQuote();
-
-
         let card_key = this._date;
         let card_summary = document.createTextNode(this._summary);
         let card_details = document.createTextNode(this._details);
