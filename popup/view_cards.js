@@ -1,8 +1,3 @@
-// document.getElementById("home").addEventListener("click", function () {
-//     location.reload();
-//     }
-// );
-
 document.addEventListener("DOMContentLoaded", function() {
 
     const accomplishment = new Accomplishment();
