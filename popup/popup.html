@@ -8,31 +8,13 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous"
     >
+    <link href="app.css" rel="stylesheet">
     <style>
         body {
             width: 480px;
             /*height: 1136px;*/
             padding: 10px;
             margin: 10px;
-        }
-        .storage-used {
-            float: left;
-            width: 10px;
-            height: 10px;
-            margin: auto;
-            /*margin-top: auto;*/
-            background-color: #5bbdd6;
-            /*float: left;*/
-        }
-
-        .storage-free {
-            float: left;
-            width: 10px;
-            height: 10px;
-            margin: auto;
-            /*margin-top: auto;*/
-            background-color: #e9ecef;
-            /*float: left;*/
         }
     </style>
 </head>
@@ -51,7 +33,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="summary">What's happening?</label>
+                <label for="summary">What have you accomplished?</label>
                 <input type="text" class="form-control" id="summary" maxlength=60 required>
                 <small id="helperText" class="form-text text-muted">
                     Required. Max length 60 characters.
@@ -61,7 +43,7 @@
                 <label for="details">Additional notes (and other juicy details)</label>
                 <textarea class="form-control" id="details" rows="3" required></textarea>
                 <small id="detailsMeta" class="form-text text-muted">
-                    Capture additional context here; you'll thank yourself later.
+                    Capture additional context now and thank yourself later.
                 </small>
             </div>
         </div>
@@ -83,12 +65,12 @@
     <div class="row mt-2 ml-auto">
         <div class="storage-used"></div>
         <div class="col">
-            <small class="text-muted" id="storage-used">Used (110 bytes)</small>
+            <small class="text-muted" id="storage-used">Used ( ? bytes)</small>
         </div>
 
         <div class="storage-free"></div>
         <div class="col">
-            <small class="text-muted" id="storage-free">Free (900 bytes)</small>
+            <small class="text-muted" id="storage-free">Free ( ? bytes)</small>
         </div>
     </div>
 </div>
