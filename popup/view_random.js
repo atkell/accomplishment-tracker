@@ -1,16 +1,3 @@
-// document.getElementById("home").addEventListener("click", function () {
-//     location.reload();
-//     }
-// );
-
-// Example from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    // return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-}
-
 document.addEventListener("DOMContentLoaded", function() {
     const accomplishment = new Accomplishment();
     accomplishment.getQuote();
@@ -19,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.storage.sync.get(null, function (result) {
 
         let storageBox = accomplishment.sortByCreatedDate(result);
-        let randomIndex = getRandomInt(0, storageBox.length);
+        let randomIndex = accomplishment.getRandomInt(0, storageBox.length);
         console.log(randomIndex);
         let csv = 'date,summary,details,mood,favorite' + '\r\n';
 
