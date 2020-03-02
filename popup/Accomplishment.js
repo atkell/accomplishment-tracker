@@ -308,21 +308,46 @@ class Accomplishment {
         chrome.tabs.create({url: chrome.extension.getURL('popup/view_all.html#window')});
     }
 
-    export(value) {
+    exportRandom(value, i) {
+        let csv = 'date,summary,details,mood,favorite' + '\r\n';
+        csv += (value[i][2]['date']
+            + ',' + value[i][0]['summary']
+            + ',' + value[i][1]['details']
+            + ',' + value[i][3]['status']
+            + ',' + value[i][4]['favorite']
+            + '\r\n'
+        );
+        return csv;
+    }
+
+    export(value, type) {
+        // value is the array object parsed from a get request to storage
+        // type is the kind of export: all, favorites, and random
         let csv = 'date,summary,details,mood,favorite' + '\r\n';
 
-        for (let i = 0; i < value.length; i++) {
-            csv += (value[i][2]['date']
+        if (type === 'favorites') {
+            for (let i = 0; i < value.length; i++) {
+                if (value[i][4]['favorite']) {
+                    csv += (value[i][2]['date']
+                        + ',' + value[i][0]['summary']
+                        + ',' + value[i][1]['details']
+                        + ',' + value[i][3]['status']
+                        + ',' + value[i][4]['favorite']
+                        + '\r\n');
+                }
+            }
+        } else {
+            for (let i = 0; i < value.length; i++) {
+                csv += (value[i][2]['date']
                     + ',' + value[i][0]['summary']
                     + ',' + value[i][1]['details']
                     + ',' + value[i][3]['status']
                     + ',' + value[i][4]['favorite']
                     + '\r\n'
-            );
+                );
+            }
         }
 
-        // console.log(csv);
-        // return encodeURIComponent(csv);
         return csv;
     }
 

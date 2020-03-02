@@ -4,10 +4,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
-
         let storageBox = accomplishment.sortByCreatedDate(result);
 
-        document.getElementById('export').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.export(storageBox)));
+        document.getElementById('export').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.export(storageBox, 'all')));
         document.getElementById('export').setAttribute('download', 'sample_export.csv');
 
         for (let i = 0; i < storageBox.length; i++) {
