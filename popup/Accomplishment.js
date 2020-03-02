@@ -57,7 +57,6 @@ class Accomplishment {
         return storageBox;
     }
 
-    // TODO
     sortByFavorites(value) {
 
         let unsortedValues = Object.values(value);
@@ -65,6 +64,23 @@ class Accomplishment {
             return a[4]['favorite'];
         });
         return storageBox;
+    }
+
+    // TODO This don't work as we'd expect...why?
+    getAllStorageKeys() {
+        return chrome.storage.sync.get(null, function (result) {
+            // let storageKeys = Object.keys(result);
+            let storageBox = this.sortByCreatedDate(result);
+            console.log(storageBox);
+        });
+    }
+
+    // TODO This don't work as we'd expect...why?
+    getAllStorageValues() {
+        return chrome.storage.sync.get(null, function (result) {
+            // console.log(Object.values(result));
+            Object.values(result);
+        });
     }
 
     save() {
@@ -290,6 +306,24 @@ class Accomplishment {
 
     openNewTab() {
         chrome.tabs.create({url: chrome.extension.getURL('popup/view_all.html#window')});
+    }
+
+    export(value) {
+        let csv = 'date,summary,details,mood,favorite' + '\r\n';
+
+        for (let i = 0; i < value.length; i++) {
+            csv += (value[i][2]['date']
+                    + ',' + value[i][0]['summary']
+                    + ',' + value[i][1]['details']
+                    + ',' + value[i][3]['status']
+                    + ',' + value[i][4]['favorite']
+                    + '\r\n'
+            );
+        }
+
+        // console.log(csv);
+        // return encodeURIComponent(csv);
+        return csv;
     }
 
     buildCardColumns() {
