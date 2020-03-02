@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous"
+    >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <a class="navbar-brand serif" href="view_all.html" id="navbar-brand" title="">🎁 Accomplishment Box</a>
+        <ul class="navbar-nav ml-auto mr-2 mt-auto mt-lg-0">
+            <li class="nav-item">
+                <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif" href="view_favorites.html">Favorites</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sans-serif" href="view_random.html">Random</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link sans-serif" href="manage_storage.html">Manage Storage</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+            <a href="#" class="btn btn-outline-primary my-2 my-sm-0 disabled" role="button" id="export">Export</a>
+        </form>
+    </div>
+</nav>
+
+<div class="container mt-5 mx-auto">
+    <div class="col-md">
+
+        <h1 class="display-4">Manage Storage</h1>
+        <p id="count-stored-items"></p>
+<!--        <label for="progressbar">Storage overview</label>-->
+        <hr/>
+        <div class="progress">
+            <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="row mt-2 ml-auto">
+            <div class="storage-used"></div>
+            <div class="col">
+                <small class="text-muted" id="storage-used">Used ( ? bytes)</small>
+            </div>
+
+            <div class="storage-free"></div>
+            <div class="col">
+                <small class="text-muted" id="storage-free">Free ( ? bytes)</small>
+            </div>
+        </div>
+        <hr/>
+
+        <div class="row mt-2">
+            <div class="col-4 ml-auto">
+                <button type="button" class="btn btn-warning">Remove non-favorites</button>
+            </div>
+            <div class="col-4 ml-auto">
+                <button type="button" class="btn btn-danger">Remove everything</button>
+            </div>
+        </div>
+
+
+
+
+
+<!--        <div class="input-group mt-3">-->
+<!--            <label for="storage-selector-switch">Storage overview</label>-->
+<!--            <div class="custom-control custom-switch form-check">-->
+<!--                <input type="checkbox" class="custom-control-input" id="storage-selector-switch">-->
+<!--                <label class="custom-control-label" for="storage-selector-switch">Toggle this switch to use local instead of sync storage</label>-->
+<!--            </div>-->
+<!--            <div class="custom-control custom-switch">-->
+<!--                <input type="checkbox" class="custom-control-input" id="customSwitch1">-->
+<!--                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>-->
+<!--            </div>-->
+<!--            <div class="custom-control custom-switch">-->
+<!--                <input type="checkbox" class="custom-control-input" disabled id="customSwitch2">-->
+<!--                <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>-->
+<!--            </div>-->
+<!--        </div>-->
+
+    </div>
+</div>
+
+
+<script src="manage_storage.js"></script>
+<script src="Accomplishment.js"></script>
+
+<script src="jquery-3.2.1.slim.min.js"></script>
+<script src="popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
+</body>
+</html>
