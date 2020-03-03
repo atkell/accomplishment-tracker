@@ -101,3 +101,23 @@ body {
     font-style: italic;
     color: rgba(0, 0, 0, 0.26);
 }
+
+.storage-used {
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    /*margin-top: auto;*/
+    background-color: #5bbdd6;
+    /*float: left;*/
+}
+
+.storage-free {
+    float: left;
+    width: 10px;
+    height: 10px;
+    margin: auto;
+    /*margin-top: auto;*/
+    background-color: #e9ecef;
+    /*float: left;*/
+}
