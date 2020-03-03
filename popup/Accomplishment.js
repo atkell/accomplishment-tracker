@@ -83,6 +83,18 @@ class Accomplishment {
         });
     }
 
+    validate () {
+        if (this._summary == "") {
+            alert("Please enter a Summary");
+          }
+          else if (this._details == "") {
+            alert("Please enter Details");
+        }
+          else {
+            this.save();
+          }
+        }
+
     save() {
 
         let body = [];
