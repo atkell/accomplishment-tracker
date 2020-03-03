@@ -237,7 +237,7 @@ class Accomplishment {
     countStoredItems() {
         chrome.storage.sync.get(null, function (result) {
             let count_stored_items = Object.keys(result).length;
-            document.getElementById('count-stored-items').innerHTML = "You have " + count_stored_items + " accomplishments.️ ";
+            document.getElementById('count-stored-items').innerHTML = "You have added " + count_stored_items + " accomplishments.️ ";
 
             // How may we find the date of the most recently added accomplishment?
             // We simply need to return the last item in the list of keys.
@@ -251,7 +251,7 @@ class Accomplishment {
             // let date_as_string = time_as_array[0] + ', the ' + time_as_array[2] + ' of ' + time_as_array[1];
             let date_as_string = time_as_array[1] + ' ' + time_as_array[2] + ', ' + time_as_array[3];
 
-            document.getElementById('count-stored-items').innerHTML += "The most recently created is from " + date_as_string + '.';
+            document.getElementById('count-stored-items').innerHTML += "The most recent is from " + date_as_string + '.';
         });
     }
 
