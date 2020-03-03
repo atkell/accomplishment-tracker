@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const accomplishment = new Accomplishment();
-    accomplishment.getQuote();
+    const quote = new Quote();
+    quote.getQuote();
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
-
+        const accomplishment = new Accomplishment();
         let storageBox = accomplishment.sortByCreatedDate(result);
         let randomIndex = accomplishment.getRandomInt(0, storageBox.length);
 

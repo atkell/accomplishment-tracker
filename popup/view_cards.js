@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const accomplishment = new Accomplishment();
-    accomplishment.getQuote();
+    const quote = new Quote();
+    quote.getQuote();
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.sync.get(null, function (result) {
+        const accomplishment = new Accomplishment();
         let storageBox = accomplishment.sortByCreatedDate(result);
 
         document.getElementById('export').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.export(storageBox, 'all')));
