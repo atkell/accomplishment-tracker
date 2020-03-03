@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
         accomplishment.details = document.getElementById('details').value;
         accomplishment.date = Date.now();
         accomplishment.favorite = false;
-        accomplishment.save();
+        accomplishment.validate();
     });
 
     // See all
