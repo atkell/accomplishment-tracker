@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const accomplishment = new Accomplishment();
-    accomplishment.freeSpace();
+    const storage = new Storage();
+    storage.freeSpace();
 
     // Create new
+    const accomplishment = new Accomplishment();
     document.getElementById("add").addEventListener("click", function () {
         accomplishment.summary = document.getElementById('summary').value;
         accomplishment.status = document.getElementById('status').value;
@@ -13,10 +14,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // See all
-    document.getElementById("view").addEventListener("click", accomplishment.openNewTab);
+    document.getElementById("view").addEventListener("click", function() {
+        accomplishment.openNewTab('popup/view_all.html#window');
+    });
 
-    // Remove all
-    // document.getElementById("delete").addEventListener("click", function () {
-    //     chrome.storage.sync.clear();
-    // });
+    if (document.getElementById("storage-learn-more")) {
+        document.getElementById("storage-learn-more").addEventListener("click", function() {
+            storage.openNewTab('popup/manage_storage.html#window');
+        });
+    }
 });
