@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("view").addEventListener("click", accomplishment.openNewTab);
 
     // Remove all
-    document.getElementById("delete").addEventListener("click", function () {
-        chrome.storage.sync.clear();
-    });
+    // document.getElementById("delete").addEventListener("click", function () {
+    //     chrome.storage.sync.clear();
+    // });
 });

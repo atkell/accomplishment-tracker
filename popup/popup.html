@@ -49,15 +49,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm btn-group-center">
-            <button type="button" class="btn btn-primary" id="add">Add accomplishment</button>
-            <button type="button" class="btn btn-info" id="view">See all</button>
-            <button type="button" class="btn btn-danger" id="delete">Remove all</button>
+        <div class="col-sm mb-2">
+            <button type="button" class="btn btn-primary" id="add">Add new accomplishment</button>
+            <button type="button" class="btn btn-info ml-2" id="view">See your accomplishments</button>
         </div>
     </div>
 </div>
-
-<div class="container-fluid mt-5">
+<hr/>
+<div class="container-fluid mt-2">
     <label for="progressbar">Storage overview</label>
     <div class="progress">
         <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
@@ -71,6 +70,9 @@
         <div class="storage-free"></div>
         <div class="col">
             <small class="text-muted" id="storage-free">Free ( ? bytes)</small>
+        </div>
+        <div class="col text-right">
+            <a href="manage_storage.html" class=""><small class="text-muted">Learn more</small></a>
         </div>
     </div>
 </div>
