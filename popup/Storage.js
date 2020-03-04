@@ -1,7 +1,7 @@
 class Storage {
 
     countStoredItems() {
-        chrome.storage.sync.get(null, function (result) {
+        chrome.storage.local.get(null, function (result) {
             let count_stored_items = Object.keys(result).length;
             document.getElementById('count-stored-items').innerHTML = "You have added " + count_stored_items + " accomplishments.️ ";
 
@@ -22,7 +22,7 @@ class Storage {
     }
 
     freeSpace() {
-        chrome.storage.sync.getBytesInUse(null, function (result) {
+        chrome.storage.local.getBytesInUse(null, function (result) {
             let current_storage = result;
             let max_storage = 102400;
             let current_storage_as_percent = Math.round(current_storage / max_storage * 100);
@@ -40,6 +40,6 @@ class Storage {
 
     deleteAllItems() {
         console.log("Pretend we deleted");
-        // chrome.storage.sync.clear();
+        // chrome.storage.local.clear();
     }
 }
