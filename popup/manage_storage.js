@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const nav = new Navbar();
+    nav.build();
+
     const storage = new Storage();
     storage.freeSpace();
     storage.countStoredItems();

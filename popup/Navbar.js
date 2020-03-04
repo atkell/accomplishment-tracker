@@ -1,27 +1,9 @@
 class Navbar {
-    getPageLocation() {
-
-        const title = document.title;
-
-        if (title.includes('Home')) {
-            console.log('this is a home page');
-        } else if (title.includes('Favorites')) {
-            console.log('this is favorites');
-        } else if (title.includes('Random')) {
-            console.log('this is random');
-        } else {
-            console.log('this is manage storage');
-        }
-
-    }
-
 
     build() {
-        this.getPageLocation();
 
         const nav = document.getElementById('nav');
 
-        nav.classList.add('navbar');
         nav.classList.add('navbar-expand-lg');
         nav.classList.add('navbar-light');
         nav.setAttribute('style', 'background-color: #fff;');
@@ -66,6 +48,7 @@ class Navbar {
         const navbar_list_item_home_link = document.createElement('a');
         navbar_list_item_home_link.classList.add('nav-link');
         navbar_list_item_home_link.classList.add('sans-serif');
+        if (document.title.includes('Home')) {navbar_list_item_home_link.classList.add('active');}
         navbar_list_item_home_link.setAttribute('href', 'view_all.html');
         navbar_list_item_home_link.innerHTML = 'Home ';
         navbar_list_item_home.appendChild(navbar_list_item_home_link);
@@ -76,6 +59,7 @@ class Navbar {
         const navbar_list_item_favorites_link = document.createElement('a');
         navbar_list_item_favorites_link.classList.add('nav-link');
         navbar_list_item_favorites_link.classList.add('sans-serif');
+        if (document.title.includes('Favorites')) {navbar_list_item_favorites_link.classList.add('active');}
         navbar_list_item_favorites_link.setAttribute('href', 'view_favorites.html');
         navbar_list_item_favorites_link.innerHTML = 'Favorites ';
         navbar_list_item_favorites.appendChild(navbar_list_item_favorites_link);
@@ -86,6 +70,7 @@ class Navbar {
         const navbar_list_item_random_link = document.createElement('a');
         navbar_list_item_random_link.classList.add('nav-link');
         navbar_list_item_random_link.classList.add('sans-serif');
+        if (document.title.includes('Random')) {navbar_list_item_random_link.classList.add('active');}
         navbar_list_item_random_link.setAttribute('href', 'view_random.html');
         navbar_list_item_random_link.innerHTML = 'Random ';
         navbar_list_item_random.appendChild(navbar_list_item_random_link);
@@ -96,6 +81,7 @@ class Navbar {
         const navbar_list_item_storage_link = document.createElement('a');
         navbar_list_item_storage_link.classList.add('nav-link');
         navbar_list_item_storage_link.classList.add('sans-serif');
+        if (document.title.includes('Storage')) {navbar_list_item_storage_link.classList.add('active');}
         navbar_list_item_storage_link.setAttribute('href', 'manage_storage.html');
         navbar_list_item_storage_link.innerHTML = 'Manage Storage ';
         navbar_list_item_storage.appendChild(navbar_list_item_storage_link);
@@ -118,8 +104,6 @@ class Navbar {
 
         navbar.appendChild(navbar_list);
         nav.append(navbar);
-
-
-
     }
+    
 }

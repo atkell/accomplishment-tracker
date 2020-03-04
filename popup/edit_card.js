@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const nav = new Navbar();
+    nav.build();
 
     const accomplishment = new Accomplishment();
     let card_id = accomplishment.parseURLforID();

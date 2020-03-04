@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const nav = new Navbar();
+    nav.build();
+
+
     const quote = new Quote();
     quote.getQuote();
 
