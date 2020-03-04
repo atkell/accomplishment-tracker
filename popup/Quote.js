@@ -1,5 +1,11 @@
 class Quote {
 
+    constructor(quote, author, source) {
+        this._quote = quote;
+        this._author = author;
+        this._source = source;
+    }
+
     getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
