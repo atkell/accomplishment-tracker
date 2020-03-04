@@ -106,11 +106,14 @@ class Accomplishment {
         body.push({"status": this._status});
         body.push({'favorite': this._favorite});
 
-        chrome.storage.local.set({[this._date]: body}, function () {});
+        chrome.storage.local.set({[this._date]: body}, function () {
+        });
 
         // We really only want this to happen if the button is clicked in the pop-up window only
         if (document.location.href.includes('manage_storage.html')) {
             location.reload();
+        } else if (document.location.href.includes('edit')) {
+            window.open('view_all.html')
         } else {
             this.openNewTab('popup/view_all.html');
         }

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const nav = new Navbar();
+    nav.build();
 
     const accomplishment = new Accomplishment();
     let card_id = accomplishment.parseURLforID();
@@ -10,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function() {
         accomplishment.details = document.getElementById('details').value;
         accomplishment.date = card_id;
         accomplishment.save();
-        console.log(accomplishment);
-        // window.open('view_all.html');
     });
 
 
