@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
             accomplishment.details = faker.lorem.paragraph();
             accomplishment.date = faker.date.recent('30').getTime();
             accomplishment.favorite = faker.random.boolean();
-            // accomplishment.validate();
-            // console.log(accomplishment);
             accomplishment.save();
         }
 

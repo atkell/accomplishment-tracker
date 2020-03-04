@@ -106,11 +106,15 @@ class Accomplishment {
         body.push({"status": this._status});
         body.push({'favorite': this._favorite});
 
-        chrome.storage.local.set({[this._date]: body}, function () {
-            console.log('Created new entry!');
-        });
+        chrome.storage.local.set({[this._date]: body}, function () {});
 
-        // this.openNewTab('popup/view_all.html');
+        // We really only want this to happen if the button is clicked in the pop-up window only
+        if (document.location.href.includes('manage_storage.html')) {
+            location.reload();
+        } else {
+            this.openNewTab('popup/view_all.html');
+        }
+
     }
 
     parseURLforID() {
@@ -175,7 +179,7 @@ class Accomplishment {
 
         element.onclick = function() {
             chrome.storage.local.remove([value.toString()], function (result) {});
-        location.reload();
+            location.reload();
         };
 
     }
@@ -242,6 +246,7 @@ class Accomplishment {
     }
 
     openNewTab(value) {
+        // https://developer.chrome.com/extensions/tabs#method-create
         chrome.tabs.create({url: chrome.extension.getURL(value)});
     }
 
