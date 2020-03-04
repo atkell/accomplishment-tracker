@@ -39,7 +39,7 @@ class Storage {
     }
 
     deleteAllItems() {
-        console.log("Pretend we deleted");
-        // chrome.storage.local.clear();
+        // console.log("Pretend we deleted");
+        chrome.storage.local.clear();
     }
 }

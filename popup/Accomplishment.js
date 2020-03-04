@@ -110,7 +110,7 @@ class Accomplishment {
             console.log('Created new entry!');
         });
 
-        this.openNewTab();
+        // this.openNewTab('popup/view_all.html');
     }
 
     parseURLforID() {
