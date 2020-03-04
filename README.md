@@ -27,4 +27,4 @@ Download a ZIP of this repository. Unzip the archive somewhere you'll remember.
 5. Navigate to the location where you unzipped the archive
 6. Click the button labeled "Select"
 7. The extension will now display within the Extensions grid
-8. Fro the bottom right hand corner of the card for this new extension, toggle the slider element in order to enable the extension
+8. From the bottom right hand corner of the card for this new extension, toggle the slider element in order to enable the extension
