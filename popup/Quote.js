@@ -15,7 +15,7 @@ class Quote {
     getQuote() {
         let quotes = [
             {
-                "quote": "No one belongs here more than you.",
+                "quote": "No one belongs here more than you",
                 "author": "Brené Brown",
                 "source": "Braving the Wilderness"
             },
