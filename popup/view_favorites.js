@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     quote.getQuote();
 
     // We're using null here in order to return ALL items in storage
-    chrome.storage.sync.get(null, function (result) {
+    chrome.storage.local.get(null, function (result) {
         const accomplishment = new Accomplishment();
         let storageBox = accomplishment.sortByCreatedDate(result);
 

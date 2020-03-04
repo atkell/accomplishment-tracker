@@ -1,28 +1,46 @@
 class Storage {
 
     countStoredItems() {
-        chrome.storage.sync.get(null, function (result) {
-            let count_stored_items = Object.keys(result).length;
-            document.getElementById('count-stored-items').innerHTML = "You have added " + count_stored_items + " accomplishments.️ ";
+        chrome.storage.local.get(null, function (result) {
 
-            // How may we find the date of the most recently added accomplishment?
-            // We simply need to return the last item in the list of keys.
-            // JavaScript apparently does not support using -1 in order to traverse the list backwards
-            // It is, instead, recommended to array.length-1, which seems just as sane.
-            let last_item_added = Object.keys(result)[count_stored_items - 1];
-            // let first_item_added = Object.keys(result)[0];
-            // let time_as_array_newest = Date(first_item_added).toLocaleString('en-US').split(' ');
-            let time_as_array = Date(last_item_added).toLocaleString('en-US').split(' ');
-            // 0 = Day of week, 1 = Month, 2 = Date, 3 = Year, 4 = Time
-            // let date_as_string = time_as_array[0] + ', the ' + time_as_array[2] + ' of ' + time_as_array[1];
-            let date_as_string = time_as_array[1] + ' ' + time_as_array[2] + ', ' + time_as_array[3];
+            // How to determine the date? One of two ways: By the "key" associated with the entry or by the "date" attribute
+            // associated with the object. These two time values may become out of sync if we start updating the "date" attribute
+            // of an object upon successful update. It could also be premature to consider this.
+            // Either way, both methods are shown below. The former is commented out, the latter is in play.
 
-            document.getElementById('count-stored-items').innerHTML += "The most recent is from " + date_as_string + '.';
+            // Determine time from storage "key"
+            // let count_stored_items = Object.keys(result).length;
+            // let last_item_added = Object.keys(result)[count_stored_items - 1];
+            // let last_as_string = time_as_array[1] + ' ' + time_as_array[2] + ', ' + time_as_array[3];
+            // let first_item_added = Date(Object.keys(result)[0]).toLocaleString('en-US').split(' ');
+            // let first_as_string = first_item_added[1] + ' ' + first_item_added[2] + ', ' + first_item_added[3];
+            //
+            // document.getElementById('count-stored-items').innerHTML = "You've added " + count_stored_items + " accomplishments️ ";
+            // document.getElementById('count-stored-items').innerHTML += "since " + first_as_string + ". ";
+            // document.getElementById('count-stored-items').innerHTML += "The most recent is from " + last_as_string + '.';
+
+
+            // Determine time from object property
+            let values = Object.values(result); // This will return an array of values associated with each stored item
+            var arr = []; // We want to create a new array made up ONLY of dates, so let's loop
+            for (let i = 0; i < values.length; i++) {
+                arr.push(values[i][2]['date']); // Add each date found to our new array
+            }
+            let newest_item = new Date(arr[arr.length - 1]).toString().split(' ');
+            let newest_string = newest_item[1] + ' ' + newest_item[2] + ', ' + newest_item[3];
+            let oldest_item = new Date(arr[0]).toString().split(' ');
+            let oldest_string = oldest_item[1] + ' ' + oldest_item[2] + ', ' + oldest_item[3];
+
+            document.getElementById('count-stored-items').innerHTML = "You've added " + values.length + " accomplishments️ ";
+            document.getElementById('count-stored-items').innerHTML += "since " + oldest_string + ". ";
+            document.getElementById('count-stored-items').innerHTML += "The most recent is from " + newest_string + '.';
+
+
         });
     }
 
     freeSpace() {
-        chrome.storage.sync.getBytesInUse(null, function (result) {
+        chrome.storage.local.getBytesInUse(null, function (result) {
             let current_storage = result;
             let max_storage = 102400;
             let current_storage_as_percent = Math.round(current_storage / max_storage * 100);
@@ -39,7 +57,8 @@ class Storage {
     }
 
     deleteAllItems() {
-        console.log("Pretend we deleted");
-        // chrome.storage.sync.clear();
+        // console.log("Pretend we deleted");
+        chrome.storage.local.clear();
+        location.reload();
     }
 }

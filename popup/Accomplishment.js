@@ -70,7 +70,7 @@ class Accomplishment {
 
     // TODO This doesn't work as we'd expect...why?
     getAllStorageKeys() {
-        return chrome.storage.sync.get(null, function (result) {
+        return chrome.storage.local.get(null, function (result) {
             // let storageKeys = Object.keys(result);
             let storageBox = this.sortByCreatedDate(result);
             console.log(storageBox);
@@ -79,7 +79,7 @@ class Accomplishment {
 
     // TODO This dosen't work as we'd expect...why?
     getAllStorageValues() {
-        return chrome.storage.sync.get(null, function (result) {
+        return chrome.storage.local.get(null, function (result) {
             // console.log(Object.values(result));
             Object.values(result);
         });
@@ -106,11 +106,15 @@ class Accomplishment {
         body.push({"status": this._status});
         body.push({'favorite': this._favorite});
 
-        chrome.storage.sync.set({[this._date]: body}, function () {
-            console.log('Created new entry!');
-        });
+        chrome.storage.local.set({[this._date]: body}, function () {});
 
-        this.openNewTab();
+        // We really only want this to happen if the button is clicked in the pop-up window only
+        if (document.location.href.includes('manage_storage.html')) {
+            location.reload();
+        } else {
+            this.openNewTab('popup/view_all.html');
+        }
+
     }
 
     parseURLforID() {
@@ -119,7 +123,7 @@ class Accomplishment {
 
     update(value) {
 
-        chrome.storage.sync.get([value], function (result) {
+        chrome.storage.local.get([value], function (result) {
 
             const storageBox = Object.values(result);
             document.getElementById('summary').value = storageBox[0][0]['summary'];
@@ -174,8 +178,8 @@ class Accomplishment {
     delete(element, value) {
 
         element.onclick = function() {
-            chrome.storage.sync.remove([value.toString()], function (result) {});
-        location.reload();
+            chrome.storage.local.remove([value.toString()], function (result) {});
+            location.reload();
         };
 
     }
@@ -198,7 +202,7 @@ class Accomplishment {
 
             // Since we're out of the context of the view_cards page, we need to use the storage API plus the card
             // ID in order to get this information
-            chrome.storage.sync.get([value.toString()], function (result) {
+            chrome.storage.local.get([value.toString()], function (result) {
                 const storageBox = Object.values(result);
                 let is_favorite = storageBox[0][4]['favorite'];
                 console.log(is_favorite);
@@ -212,7 +216,7 @@ class Accomplishment {
                     body.push({"date": storageBox[0][2]['date']});
                     body.push({"status": storageBox[0][3]['status']});
                     body.push({'favorite': true});
-                    chrome.storage.sync.set({[value.toString()]: body});
+                    chrome.storage.local.set({[value.toString()]: body});
 
                     location.reload();
 
@@ -225,7 +229,7 @@ class Accomplishment {
                     body.push({"date": storageBox[0][2]['date']});
                     body.push({"status": storageBox[0][3]['status']});
                     body.push({'favorite': false});
-                    chrome.storage.sync.set({[value.toString()]: body});
+                    chrome.storage.local.set({[value.toString()]: body});
 
                     location.reload();
 
@@ -242,6 +246,7 @@ class Accomplishment {
     }
 
     openNewTab(value) {
+        // https://developer.chrome.com/extensions/tabs#method-create
         chrome.tabs.create({url: chrome.extension.getURL(value)});
     }
 
