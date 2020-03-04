@@ -105,5 +105,5 @@ class Navbar {
         navbar.appendChild(navbar_list);
         nav.append(navbar);
     }
-    
+
 }
