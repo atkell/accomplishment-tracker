@@ -1,5 +1,11 @@
 class Quote {
 
+    constructor(quote, author, source) {
+        this._quote = quote;
+        this._author = author;
+        this._source = source;
+    }
+
     getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
@@ -9,7 +15,7 @@ class Quote {
     getQuote() {
         let quotes = [
             {
-                "quote": "No one belongs here more than you.",
+                "quote": "No one belongs here more than you",
                 "author": "Brené Brown",
                 "source": "Braving the Wilderness"
             },
