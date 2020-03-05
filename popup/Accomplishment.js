@@ -113,7 +113,8 @@ class Accomplishment {
         if (document.location.href.includes('manage_storage.html')) {
             location.reload();
         } else if (document.location.href.includes('edit')) {
-            window.open('view_all.html')
+            // window.open('view_all.html', 'self');
+            window.location.href = 'view_all.html'
         } else {
             this.openNewTab('popup/view_all.html');
         }
@@ -174,7 +175,8 @@ class Accomplishment {
 
         element.onclick = function() {
             let url = 'edit_card.html?id=' + encodeURIComponent(value);
-            window.open(url);
+            // window.open(url, 'self');
+            window.location.href = url;
         };
     }
 
@@ -316,10 +318,16 @@ class Accomplishment {
 
         // <h5 class="card-title">
         let h5CardTitle = document.createElement('h5');
-        h5CardTitle.classList.add('card-title');
+        // h5CardTitle.classList.add('card-title');
         h5CardTitle.classList.add('serif');
-        h5CardTitle.classList.add('mb-1');
+        // h5CardTitle.classList.add('mb-1');
         h5CardTitle.appendChild(card_summary);
+        // Make card title a link to edit
+        let h5CardTitleLink = document.createElement('a');
+        h5CardTitleLink.classList.add('card-title');
+        h5CardTitleLink.setAttribute('href', '#');
+        h5CardTitleLink.appendChild(h5CardTitle);
+        this.edit(h5CardTitleLink, card_key);
 
         // <p class="card-text">
         let pCardDetailsText = document.createElement('p');
@@ -433,7 +441,7 @@ class Accomplishment {
         divRow2.appendChild(divColSm4);
 
         // Build the card from its various lego bricks
-        divCardBody.appendChild(h5CardTitle);
+        divCardBody.appendChild(h5CardTitleLink);
         divCardBody.appendChild(divRow);
         divCardBody.appendChild(pCardDetailsText);
         divCardBody.appendChild(divRow2);
