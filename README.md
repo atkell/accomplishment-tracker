@@ -2,7 +2,7 @@
 Lessons learned in building a Chrome extension
 
 # what is it?
-Simply put, it is a way to track your accomplishments via a browser extension. The accomplishments are stored on your local machine via the Chrome browser storage API (https://developer.chrome.com/extensions/storage). Accomplishments are stored chronologically but are displayed in reverse order, with the newest item appearing first.
+Simply put, it is a way to track your accomplishments via a browser extension. The accomplishments are stored on your local machine via the Chrome browser storage API (https://developer.chrome.com/extensions/storage). Accomplishments are stored chronologically but are displayed from newest to oldest, top to bottom, and left to right.
 
 Current features include:
 * Add new item
