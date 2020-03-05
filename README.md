@@ -18,13 +18,13 @@ Current features include:
 Issues and feature requests may be found in the Issues area of the project repository. 
 
 # how to install
-Download a ZIP of this repository. Unzip the archive somewhere you'll remember.
 
-1. Launch the Chrome browser
-2. Navigate to chrome://extensions/
-3. From the top right hand corner, toggle the slider element in order to enable "Developer Mode"
-4. From the top left hand corner, click the button labeled "Load Unpacked"
-5. Navigate to the location where you unzipped the archive
-6. Click the button labeled "Select"
-7. The extension will now display within the Extensions grid
-8. From the bottom right hand corner of the card for this new extension, toggle the slider element in order to enable the extension
+1. Locate the green button labeled *Clone or Download* and click it in order to download a ZIP file
+2. Unzip the contents of this file to a new folder in a location you'll remember (like Downloads or Desktop, e.g.)
+3. In the Chrome browser, navigate to chrome://extensions
+4. From the top right hand corner, toggle the slider element in order to enable "Developer Mode"
+5. From the top left hand corner, click the button labeled "Load Unpacked", a dialog window will open
+6. Navigate to the location chosen above, in Step 2
+7. Click the button labeled "Select"
+8. The extension will now display within the Extensions grid
+9. From the bottom right hand corner of the card for this new extension, toggle the slider element in order to enable the extension
