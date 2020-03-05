@@ -121,3 +121,7 @@ body {
     background-color: #e9ecef;
     /*float: left;*/
 }
+
+a.card-title:hover {
+    text-decoration: none;
+}
