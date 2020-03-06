@@ -23,19 +23,25 @@ class Storage {
             // Determine time from object property
             let values = Object.values(result); // This will return an array of values associated with each stored item
             var arr = []; // We want to create a new array made up ONLY of dates, so let's loop
+
             for (let i = 0; i < values.length; i++) {
                 arr.push(values[i][2]['date']); // Add each date found to our new array
             }
-            let newest_item = new Date(arr[arr.length - 1]).toString().split(' ');
-            let newest_string = newest_item[1] + ' ' + newest_item[2] + ', ' + newest_item[3];
-            let oldest_item = new Date(arr[0]).toString().split(' ');
-            let oldest_string = oldest_item[1] + ' ' + oldest_item[2] + ', ' + oldest_item[3];
 
-            document.getElementById('count-stored-items').innerHTML = "You've added " + values.length + " accomplishments️ ";
-            document.getElementById('count-stored-items').innerHTML += "since " + oldest_string + ". ";
-            document.getElementById('count-stored-items').innerHTML += "The most recent is from " + newest_string + '.';
+            if (arr.length === 0) {
+                document.getElementById('count-stored-items').innerHTML = 'You have not added any accomplishments yet.'
+            } else {
+                let newest_item = new Date(arr[arr.length - 1]).toString().split(' ');
+                let newest_string = newest_item[1] + ' ' + newest_item[2] + ', ' + newest_item[3];
+                let oldest_item = new Date(arr[0]).toString().split(' ');
+                let oldest_string = oldest_item[1] + ' ' + oldest_item[2] + ', ' + oldest_item[3];
 
+                document.getElementById('count-stored-items').innerHTML = "You've added " + values.length + " accomplishments️ ";
+                document.getElementById('count-stored-items').innerHTML += "since " + oldest_string + ". ";
+                document.getElementById('count-stored-items').innerHTML += "The most recent is from " + newest_string + '.';
+                document.getElementById('count-stored-items').innerHTML += "<br/> <p>Your accomplishments are stored <a href=\"https://developer.chrome.com/extensions/storage\" target=\"_blank\"><em>locally</em></a>.</p>";
 
+            }
         });
     }
 

@@ -97,7 +97,7 @@ class Navbar {
         navbar_list_item_export_link.classList.add('my-sm-0');
         navbar_list_item_export_link.setAttribute('href', '#');
         navbar_list_item_export_link.setAttribute('role', 'button');
-        navbar_list_item_export_link.setAttribute('id', 'export');
+        navbar_list_item_export_link.setAttribute('id', 'export-csv');
         navbar_list_item_export_link.innerHTML = 'Export ';
         navbar_list_item_export.appendChild(navbar_list_item_export_link);
         navbar_list.appendChild(navbar_list_item_export);
