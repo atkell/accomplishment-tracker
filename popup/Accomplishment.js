@@ -267,7 +267,7 @@ class Accomplishment {
         return csv;
     }
 
-    export(value, type) {
+    exportCSV(value, type) {
         // value is the array object parsed from a get request to storage
         // type is the kind of export: all, favorites, and random
         let csv = 'date,summary,details,mood,favorite' + '\r\n';
@@ -275,7 +275,7 @@ class Accomplishment {
         if (type === 'favorites') {
             for (let i = 0; i < value.length; i++) {
                 if (value[i][4]['favorite']) {
-                    csv += (value[i][2]['date']
+                    csv += (this.prettyPrintDate(value[i][2]['date'])
                         + ',' + value[i][0]['summary']
                         + ',' + value[i][1]['details']
                         + ',' + value[i][3]['status']
@@ -285,7 +285,7 @@ class Accomplishment {
             }
         } else {
             for (let i = 0; i < value.length; i++) {
-                csv += (value[i][2]['date']
+                csv += (this.prettyPrintDate(value[i][2]['date'])
                     + ',' + value[i][0]['summary']
                     + ',' + value[i][1]['details']
                     + ',' + value[i][3]['status']
@@ -296,6 +296,45 @@ class Accomplishment {
         }
 
         return csv;
+    }
+
+    prettyPrintDate(value) {
+        let date_string = new Date(value).toString().split(' ', 5);
+        let year = date_string[3];
+        let month = date_string[1];
+
+        // Let's replace the abbr month with its number instead
+        if (month === 'Jan') {
+            month = '01';
+        } else if (month === 'Feb') {
+            month = '02';
+        } else if (month === 'Mar') {
+            month = '03';
+        } else if (month === 'Apr') {
+            month = '04';
+        } else if (month === 'May') {
+            month = '05';
+        } else if (month === 'Jun') {
+            month = '06';
+        } else if (month === 'Jul') {
+            month = '07';
+        } else if (month === 'Aug') {
+            month = '08';
+        } else if (month === 'Sep') {
+            month = '09';
+        } else if (month === 'Oct') {
+            month = '10';
+        } else if (month === 'Nov') {
+            month = '11';
+        } else if (month === 'Dec') {
+            month = '12';
+        }
+
+        let date = date_string[2];
+        let time = date_string[4]; // Is this really necessary?
+        let separator = "-";
+        return year + separator + month + separator + date;
+
     }
 
     buildCardColumns() {

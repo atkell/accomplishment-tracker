@@ -10,8 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const accomplishment = new Accomplishment();
         let storageBox = accomplishment.sortByCreatedDate(result);
 
-        document.getElementById('export').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.export(storageBox, 'favorites')));
-        document.getElementById('export').setAttribute('download', 'favorites_export.csv');
+        document.getElementById('export-csv').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.exportCSV(storageBox, 'favorites')));
+        document.getElementById('export-csv').setAttribute('download', 'favorites_export.csv');
 
         for (let i = 0; i < storageBox.length; i++) {
             accomplishment.summary = storageBox[i][0]['summary'];
