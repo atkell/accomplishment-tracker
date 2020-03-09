@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
     const footer = new Footer();
     footer.build();
 
-
     // We're using null here in order to return ALL items in storage
     chrome.storage.local.get(null, function (result) {
         const accomplishment = new Accomplishment();
