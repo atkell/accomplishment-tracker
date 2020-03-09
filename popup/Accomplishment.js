@@ -48,6 +48,8 @@ class Accomplishment {
         this._favorite = value;
     }
 
+
+
     sortByCreatedDate(value) {
 
         let unsortedValues = Object.values(value);
@@ -66,18 +68,18 @@ class Accomplishment {
         return storageBox;
     }
 
-    // TODO This don't work as we'd expect...why?
+    // TODO This doesn't work as we'd expect...why?
     getAllStorageKeys() {
-        return chrome.storage.sync.get(null, function (result) {
+        return chrome.storage.local.get(null, function (result) {
             // let storageKeys = Object.keys(result);
             let storageBox = this.sortByCreatedDate(result);
             console.log(storageBox);
         });
     }
 
-    // TODO This don't work as we'd expect...why?
+    // TODO This dosen't work as we'd expect...why?
     getAllStorageValues() {
-        return chrome.storage.sync.get(null, function (result) {
+        return chrome.storage.local.get(null, function (result) {
             // console.log(Object.values(result));
             Object.values(result);
         });
@@ -104,11 +106,19 @@ class Accomplishment {
         body.push({"status": this._status});
         body.push({'favorite': this._favorite});
 
-        chrome.storage.sync.set({[this._date]: body}, function () {
-            console.log('Created new entry!');
+        chrome.storage.local.set({[this._date]: body}, function () {
         });
 
-        this.openNewTab();
+        // We really only want this to happen if the button is clicked in the pop-up window only
+        if (document.location.href.includes('manage_storage.html')) {
+            location.reload();
+        } else if (document.location.href.includes('edit')) {
+            // window.open('view_all.html', 'self');
+            window.location.href = 'view_all.html'
+        } else {
+            this.openNewTab('popup/view_all.html');
+        }
+
     }
 
     parseURLforID() {
@@ -117,7 +127,7 @@ class Accomplishment {
 
     update(value) {
 
-        chrome.storage.sync.get([value], function (result) {
+        chrome.storage.local.get([value], function (result) {
 
             const storageBox = Object.values(result);
             document.getElementById('summary').value = storageBox[0][0]['summary'];
@@ -171,15 +181,16 @@ class Accomplishment {
 
         element.onclick = function() {
             let url = 'edit_card.html?id=' + encodeURIComponent(value);
-            window.open(url);
+            // window.open(url, 'self');
+            window.location.href = url;
         };
     }
 
     delete(element, value) {
 
         element.onclick = function() {
-            chrome.storage.sync.remove([value.toString()], function (result) {});
-        location.reload();
+            chrome.storage.local.remove([value.toString()], function (result) {});
+            location.reload();
         };
 
     }
@@ -202,7 +213,7 @@ class Accomplishment {
 
             // Since we're out of the context of the view_cards page, we need to use the storage API plus the card
             // ID in order to get this information
-            chrome.storage.sync.get([value.toString()], function (result) {
+            chrome.storage.local.get([value.toString()], function (result) {
                 const storageBox = Object.values(result);
                 let is_favorite = storageBox[0][4]['favorite'];
                 console.log(is_favorite);
@@ -216,7 +227,7 @@ class Accomplishment {
                     body.push({"date": storageBox[0][2]['date']});
                     body.push({"status": storageBox[0][3]['status']});
                     body.push({'favorite': true});
-                    chrome.storage.sync.set({[value.toString()]: body});
+                    chrome.storage.local.set({[value.toString()]: body});
 
                     location.reload();
 
@@ -229,7 +240,7 @@ class Accomplishment {
                     body.push({"date": storageBox[0][2]['date']});
                     body.push({"status": storageBox[0][3]['status']});
                     body.push({'favorite': false});
-                    chrome.storage.sync.set({[value.toString()]: body});
+                    chrome.storage.local.set({[value.toString()]: body});
 
                     location.reload();
 
@@ -239,112 +250,15 @@ class Accomplishment {
         };
     }
 
-    freeSpace() {
-        chrome.storage.sync.getBytesInUse(null, function (result) {
-            let current_storage = result;
-            let max_storage = 102400;
-            let current_storage_as_percent = Math.round(current_storage / max_storage * 100);
-
-            document.getElementById('progressbar').setAttribute('style', 'width: ' + current_storage_as_percent + "%;");
-            document.getElementById('progressbar').setAttribute('aria-valuenow', current_storage_as_percent);
-            document.getElementById('storage-used').innerHTML = "Used ( " + current_storage_as_percent + "% )";
-            document.getElementById('storage-free').innerHTML = "Free ( " + (100 - current_storage_as_percent) + "% )";
-        });
-    }
-
-    countStoredItems() {
-        chrome.storage.sync.get(null, function (result) {
-            let count_stored_items = Object.keys(result).length;
-            document.getElementById('count-stored-items').innerHTML = "You have added " + count_stored_items + " accomplishments.️ ";
-
-            // How may we find the date of the most recently added accomplishment?
-            // We simply need to return the last item in the list of keys.
-            // JavaScript apparently does not support using -1 in order to traverse the list backwards
-            // It is, instead, recommended to array.length-1, which seems just as sane.
-            let last_item_added = Object.keys(result)[count_stored_items - 1];
-            // let first_item_added = Object.keys(result)[0];
-            // let time_as_array_newest = Date(first_item_added).toLocaleString('en-US').split(' ');
-            let time_as_array = Date(last_item_added).toLocaleString('en-US').split(' ');
-            // 0 = Day of week, 1 = Month, 2 = Date, 3 = Year, 4 = Time
-            // let date_as_string = time_as_array[0] + ', the ' + time_as_array[2] + ' of ' + time_as_array[1];
-            let date_as_string = time_as_array[1] + ' ' + time_as_array[2] + ', ' + time_as_array[3];
-
-            document.getElementById('count-stored-items').innerHTML += "The most recent is from " + date_as_string + '.';
-        });
-    }
-
     getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
 
-    getQuote() {
-        let quotes = [
-            {
-                "quote": "No one belongs here more than you.",
-                "author": "Brené Brown",
-                "source": "Braving the Wilderness"
-            },
-            {
-                "quote": "Qui court deux lievres a la fois, n’en prend aucun",
-                "author": "Unknown",
-                "source": "French Proverb"
-            },
-            {
-                "quote": "Petit a petit, l’oiseau fait son nid",
-                "author": "Unknown",
-                "source": "French Proverb"
-            },
-            {
-                "quote": "Imagine others complexly",
-                "author": "John Green",
-                "source": "ALAN Conference"
-            },
-            {
-                "quote": "You are an aperture through which the universe is looking at and exploring itself",
-                "author": "Alan W Watts",
-                "source": ""
-            },
-            {
-                "quote": "You're under no obligation to be the same person you were 5 minutes ago",
-                "author": "Alan W Watts",
-                "source": ""
-            },
-            {
-                "quote": "The way to get started is to quit talking and begin doing",
-                "author": "Walt Disney",
-                "source": ""
-            },
-            {
-                "quote": "You never fail until you stop trying",
-                "author": "Albert Einstein ",
-                "source": ""
-            },
-            {
-                "quote": "The universe is always conspiring for your good",
-                "author": "Lexie Burton-Brown",
-                "source": ""
-            }
-            // {
-            //     "quote": "",
-            //     "author": "",
-            //     "source": ""
-            // }
-        ];
-
-        let randomQuote = quotes[this.getRandomInt(0, quotes.length)];
-        let quoteValues = Object.values(randomQuote);
-        document.getElementById('quote-text').innerHTML = quoteValues[0];
-        if (quoteValues[2] === "") {
-            document.getElementById('quote-author').innerHTML = quoteValues[1];
-        } else {
-            document.getElementById('quote-author').innerHTML = quoteValues[1] + ", <em>" + quoteValues[2] + "</em>";
-        }
-    }
-
-    openNewTab() {
-        chrome.tabs.create({url: chrome.extension.getURL('popup/view_all.html#window')});
+    openNewTab(value) {
+        // https://developer.chrome.com/extensions/tabs#method-create
+        chrome.tabs.create({url: chrome.extension.getURL(value)});
     }
 
     exportRandom(value, i) {
@@ -359,7 +273,7 @@ class Accomplishment {
         return csv;
     }
 
-    export(value, type) {
+    exportCSV(value, type) {
         // value is the array object parsed from a get request to storage
         // type is the kind of export: all, favorites, and random
         let csv = 'date,summary,details,mood,favorite' + '\r\n';
@@ -367,7 +281,7 @@ class Accomplishment {
         if (type === 'favorites') {
             for (let i = 0; i < value.length; i++) {
                 if (value[i][4]['favorite']) {
-                    csv += (value[i][2]['date']
+                    csv += (this.prettyPrintDate(value[i][2]['date'])
                         + ',' + value[i][0]['summary']
                         + ',' + value[i][1]['details']
                         + ',' + value[i][3]['status']
@@ -377,7 +291,7 @@ class Accomplishment {
             }
         } else {
             for (let i = 0; i < value.length; i++) {
-                csv += (value[i][2]['date']
+                csv += (this.prettyPrintDate(value[i][2]['date'])
                     + ',' + value[i][0]['summary']
                     + ',' + value[i][1]['details']
                     + ',' + value[i][3]['status']
@@ -388,6 +302,45 @@ class Accomplishment {
         }
 
         return csv;
+    }
+
+    prettyPrintDate(value) {
+        let date_string = new Date(value).toString().split(' ', 5);
+        let year = date_string[3];
+        let month = date_string[1];
+
+        // Let's replace the abbr month with its number instead
+        if (month === 'Jan') {
+            month = '01';
+        } else if (month === 'Feb') {
+            month = '02';
+        } else if (month === 'Mar') {
+            month = '03';
+        } else if (month === 'Apr') {
+            month = '04';
+        } else if (month === 'May') {
+            month = '05';
+        } else if (month === 'Jun') {
+            month = '06';
+        } else if (month === 'Jul') {
+            month = '07';
+        } else if (month === 'Aug') {
+            month = '08';
+        } else if (month === 'Sep') {
+            month = '09';
+        } else if (month === 'Oct') {
+            month = '10';
+        } else if (month === 'Nov') {
+            month = '11';
+        } else if (month === 'Dec') {
+            month = '12';
+        }
+
+        let date = date_string[2];
+        let time = date_string[4]; // Is this really necessary?
+        let separator = "-";
+        return year + separator + month + separator + date;
+
     }
 
     buildCardColumns() {
@@ -410,10 +363,16 @@ class Accomplishment {
 
         // <h5 class="card-title">
         let h5CardTitle = document.createElement('h5');
-        h5CardTitle.classList.add('card-title');
+        // h5CardTitle.classList.add('card-title');
         h5CardTitle.classList.add('serif');
-        h5CardTitle.classList.add('mb-1');
+        // h5CardTitle.classList.add('mb-1');
         h5CardTitle.appendChild(card_summary);
+        // Make card title a link to edit
+        let h5CardTitleLink = document.createElement('a');
+        h5CardTitleLink.classList.add('card-title');
+        h5CardTitleLink.setAttribute('href', '#');
+        h5CardTitleLink.appendChild(h5CardTitle);
+        this.edit(h5CardTitleLink, card_key);
 
         // <p class="card-text">
         let pCardDetailsText = document.createElement('p');
@@ -527,7 +486,7 @@ class Accomplishment {
         divRow2.appendChild(divColSm4);
 
         // Build the card from its various lego bricks
-        divCardBody.appendChild(h5CardTitle);
+        divCardBody.appendChild(h5CardTitleLink);
         divCardBody.appendChild(divRow);
         divCardBody.appendChild(pCardDetailsText);
         divCardBody.appendChild(divRow2);

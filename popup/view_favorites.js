@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const accomplishment = new Accomplishment();
-    accomplishment.getQuote();
+    const nav = new Navbar();
+    nav.build();
+
+    const quote = new Quote();
+    quote.getQuote();
 
     // We're using null here in order to return ALL items in storage
-    chrome.storage.sync.get(null, function (result) {
-
+    chrome.storage.local.get(null, function (result) {
+        const accomplishment = new Accomplishment();
         let storageBox = accomplishment.sortByCreatedDate(result);
 
-        document.getElementById('export').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.export(storageBox, 'favorites')));
-        document.getElementById('export').setAttribute('download', 'favorites_export.csv');
+        document.getElementById('export-csv').setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(accomplishment.exportCSV(storageBox, 'favorites')));
+        document.getElementById('export-csv').setAttribute('download', 'favorites_export.csv');
 
         for (let i = 0; i < storageBox.length; i++) {
             accomplishment.summary = storageBox[i][0]['summary'];

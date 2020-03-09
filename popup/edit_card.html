@@ -1,54 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>🎁 Accomplishment Box – Edit</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous"
     >
-    <style>
-        body {
-            width: 480px;
-            /*height: 1136px;*/
-            padding: 10px;
-            margin: 10px;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link href="app.css" rel="stylesheet">
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="navbar" id="nav"></nav>
 
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-        <a class="navbar-brand serif" href="view_all.html" title="Qui court deux lievres a la fois, n’en prend aucun.">
-            🦊 Renarde
-        </a>
-        <ul class="navbar-nav ml-auto mr-2 mt-2 mt-lg-0">
-            <li class="nav-item active">
-                <a class="nav-link sans-serif" href="view_all.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link sans-serif disabled" href="#">Favorites</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link sans-serif disabled" href="#">Random</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <!--            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
-            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Export</button>
-        </form>
-    </div>
-</nav>
-
-<div class="container-fluid mt-5">
+<div class="container mt-5">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-md">
+            <h1 class="display-4" id="edit-accomplishment-header">Edit your accomplishment</h1>
+            <p>Found a typo? Have an update? Make your changes here and click the <em>Save</em> button when you're done!</p>
+            <hr/>
             <div class="form-group">
                 <label for="status">How are you feeling?</label>
                 <select class="form-control" id="status">
@@ -59,7 +32,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="summary">What's happening?</label>
+                <label for="summary">What have you accomplished?</label>
                 <input type="text" class="form-control" id="summary" maxlength=60 required>
                 <small id="helperText" class="form-text text-muted">
                     Required. Max length 60 characters.
@@ -76,14 +49,18 @@
     </div>
     <div class="row">
         <div class="col-sm btn-group-center">
-            <button type="button" class="btn btn-primary" id="update">Save updates to accomplishment</button>
-<!--            <button type="button" class="btn btn-info" id="view">See all items</button>-->
-<!--            <button type="button" class="btn btn-danger" id="delete">Remove item</button>-->
+            <button type="button" class="btn btn-outline-primary" id="update">Save changes</button>
         </div>
     </div>
 </div>
 
 <script src="edit_card.js"></script>
 <script src="Accomplishment.js"></script>
+<script src="Navbar.js"></script>
+
+<script src="jquery-3.2.1.slim.min.js"></script>
+<script src="popper.min.js"></script>
+<script src="bootstrap.min.js"></script>
+
 </body>
 </html>
