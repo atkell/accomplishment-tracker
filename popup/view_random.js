@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", function() {
     const nav = new Navbar();
     nav.build();
 
-
     const quote = new Quote();
     quote.getQuote();
+
+    const footer = new Footer();
+    footer.build();
 
     // We're using null here in order to return ALL items in storage
     chrome.storage.local.get(null, function (result) {
