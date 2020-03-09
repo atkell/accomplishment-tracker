@@ -141,7 +141,13 @@ class Accomplishment {
 
         var durationInMinutes = Math.round(((Date.now() - this._date) / 60000));
 
-        if (durationInMinutes > 60) {
+        if (durationInMinutes > 2880) {
+            var durationInMinutes = Math.round(durationInMinutes / 1440);
+            var unitOfTime = 'days ago';
+        } else if (durationInMinutes > 1440 && durationInMinutes < 2880) {
+            var durationInMinutes = Math.round(durationInMinutes / 1440);
+            var unitOfTime = 'day ago'
+        } else if (durationInMinutes > 60) {
             var durationInMinutes = Math.round(durationInMinutes / 60);
             var unitOfTime = 'hours ago';
         } else if (durationInMinutes < 60 && durationInMinutes > 1) {
