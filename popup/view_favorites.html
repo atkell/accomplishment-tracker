@@ -15,26 +15,28 @@
 </head>
 <body>
 
-<nav class="navbar" id="nav"></nav>
+<header><nav class="navbar" id="nav"></nav></header>
 
-<div class="container-fluid mt-3 mb-3">
-    <div class="row justify-content-center">
-        <blockquote class="blockquote">
-            <p class="mb-2 serif h2" id="quote-text"></p>
-            <footer class="blockquote-footer text-center" id="quote-author"></footer>
-        </blockquote>
+<main role="main" class="container">
+    <div class="container-fluid mt-3 mb-3">
+        <div class="row justify-content-center">
+            <blockquote class="blockquote">
+                <p class="mb-2 serif h2" id="quote-text"></p>
+                <footer class="blockquote-footer text-center" id="quote-author"></footer>
+            </blockquote>
+        </div>
     </div>
-</div>
+    <div class="container-fluid"><div class="card-columns" id="card-columns"></div></div>
+</main>
 
-<div class="container-fluid">
-    <div class="card-columns" id="card-columns"></div>
-</div>
+<footer class="footer"><div class="container text-center" id="footer"></div></footer>
 
 
 <script src="view_favorites.js"></script>
 <script src="Accomplishment.js"></script>
 <script src="Quote.js"></script>
 <script src="Navbar.js"></script>
+<script src="Footer.js"></script>
 
 <script src="jquery-3.2.1.slim.min.js"></script>
 <script src="popper.min.js"></script>

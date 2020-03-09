@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     const nav = new Navbar();
     nav.build();
 
+    const footer = new Footer();
+    footer.build();
+
     const accomplishment = new Accomplishment();
     let card_id = accomplishment.parseURLforID();
     accomplishment.update(card_id);

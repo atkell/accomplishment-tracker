@@ -14,44 +14,48 @@
 </head>
 <body>
 
-<nav class="navbar" id="nav"></nav>
+<header><nav class="navbar" id="nav"></nav></header>
 
-<div class="container mt-5 mx-auto">
-    <div class="col-md">
+<main role="main" class="container">
+    <div class="container mt-5 mx-auto">
+        <div class="col-md">
 
-        <h1 class="display-4">Manage your stored items</h1>
-        <p id="count-stored-items"></p>
-        <hr/>
-        <div class="progress">
-            <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-
-        <div class="row mt-2 ml-auto">
-            <div class="storage-used"></div>
-            <div class="col">
-                <small class="text-muted" id="storage-used">Used ( ? bytes)</small>
+            <h1 class="display-4">Manage your stored items</h1>
+            <p id="count-stored-items"></p>
+            <hr/>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" id="progressbar" style="" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
 
-            <div class="storage-free"></div>
-            <div class="col">
-                <small class="text-muted" id="storage-free">Free ( ? bytes)</small>
-            </div>
-        </div>
-        <hr/>
+            <div class="row mt-2 ml-auto">
+                <div class="storage-used"></div>
+                <div class="col">
+                    <small class="text-muted" id="storage-used">Used ( ? bytes)</small>
+                </div>
 
-        <div class="row mt-4">
-            <div class="col-sm">
-                <button type="button" class="btn btn-outline-danger" id="delete-all">Remove everything</button>
+                <div class="storage-free"></div>
+                <div class="col">
+                    <small class="text-muted" id="storage-free">Free ( ? bytes)</small>
+                </div>
             </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-outline-info" id="mock-data">Generate dummy data</button>
-            </div>
-            <div class="col-sm">
-                <button type="button" class="btn btn-outline-warning disabled" id="delete-most-keep-favorites">Remove non-favorites</button>
+            <hr/>
+
+            <div class="row mt-4">
+                <div class="col-sm">
+                    <button type="button" class="btn btn-outline-danger" id="delete-all">Remove everything</button>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-outline-info" id="mock-data">Generate dummy data</button>
+                </div>
+                <div class="col-sm">
+                    <button type="button" class="btn btn-outline-warning disabled" id="delete-most-keep-favorites">Remove non-favorites</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
+
+<footer class="footer"><div class="container text-center" id="footer"></div></footer>
 
 <script src="manage_storage.js"></script>
 <script src="faker.min.js"></script>
@@ -59,6 +63,7 @@
 <script src="Accomplishment.js"></script>
 <script src="Storage.js"></script>
 <script src="Navbar.js"></script>
+<script src="Footer.js"></script>
 
 <script src="jquery-3.2.1.slim.min.js"></script>
 <script src="popper.min.js"></script>
