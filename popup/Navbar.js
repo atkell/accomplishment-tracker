@@ -1,5 +1,13 @@
 class Navbar {
 
+    allowExport() {
+
+        const title = document.title;
+        // Fancy conditional (ternary) operator
+        return (title.includes('Home') || title.includes('Favorites') ? 'enabled' : 'disabled');
+
+    }
+
     build() {
 
         const nav = document.getElementById('nav');
@@ -95,7 +103,9 @@ class Navbar {
         navbar_list_item_export_link.classList.add('ml-2');
         navbar_list_item_export_link.classList.add('my-2');
         navbar_list_item_export_link.classList.add('my-sm-0');
-        if (!document.title.includes('Home') || !document.title.includes('Favorites')) {navbar_list_item_export_link.classList.add('disabled');}
+        navbar_list_item_export_link.classList.add(this.allowExport());
+
+
         navbar_list_item_export_link.setAttribute('href', '#');
         navbar_list_item_export_link.setAttribute('role', 'button');
         navbar_list_item_export_link.setAttribute('id', 'export-csv');
