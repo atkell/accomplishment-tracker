@@ -103,7 +103,8 @@ class Navbar {
         navbar_list_item_add_link.classList.add('ml-2');
         navbar_list_item_add_link.classList.add('my-2');
         navbar_list_item_add_link.classList.add('my-sm-0');
-        navbar_list_item_add_link.setAttribute('href', 'popup.html');
+        navbar_list_item_add_link.classList.add(this.allowExport());
+        navbar_list_item_add_link.setAttribute('href', 'add_new.html');
         navbar_list_item_add_link.setAttribute('role', 'button');
         navbar_list_item_add_link.setAttribute('id', 'add-new');
         navbar_list_item_add_link.innerHTML = '+ New ';
