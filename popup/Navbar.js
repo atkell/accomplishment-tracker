@@ -95,6 +95,21 @@ class Navbar {
         navbar_list_item_storage.appendChild(navbar_list_item_storage_link);
         navbar_list.appendChild(navbar_list_item_storage);
 
+        const navbar_list_item_add = document.createElement('li');
+        navbar_list_item_add.classList.add('nav-item');
+        const navbar_list_item_add_link = document.createElement('a');
+        navbar_list_item_add_link.classList.add('btn');
+        navbar_list_item_add_link.classList.add('btn-outline-info');
+        navbar_list_item_add_link.classList.add('ml-2');
+        navbar_list_item_add_link.classList.add('my-2');
+        navbar_list_item_add_link.classList.add('my-sm-0');
+        navbar_list_item_add_link.setAttribute('href', 'popup.html');
+        navbar_list_item_add_link.setAttribute('role', 'button');
+        navbar_list_item_add_link.setAttribute('id', 'add-new');
+        navbar_list_item_add_link.innerHTML = '+ New ';
+        navbar_list_item_add.appendChild(navbar_list_item_add_link);
+        navbar_list.appendChild(navbar_list_item_add);
+
         const navbar_list_item_export = document.createElement('li');
         navbar_list_item_export.classList.add('nav-item');
         const navbar_list_item_export_link = document.createElement('a');
@@ -104,8 +119,6 @@ class Navbar {
         navbar_list_item_export_link.classList.add('my-2');
         navbar_list_item_export_link.classList.add('my-sm-0');
         navbar_list_item_export_link.classList.add(this.allowExport());
-
-
         navbar_list_item_export_link.setAttribute('href', '#');
         navbar_list_item_export_link.setAttribute('role', 'button');
         navbar_list_item_export_link.setAttribute('id', 'export-csv');
