@@ -115,7 +115,7 @@ class Accomplishment {
         // We really only want this to happen if the button is clicked in the pop-up window only
         if (document.location.href.includes('manage_storage.html')) {
             location.reload();
-        } else if (document.location.href.includes('edit')) {
+        } else if (document.location.href.includes('edit') || document.location.href.includes('add_new')) {
             // window.open('view_all.html', 'self');
             window.location.href = 'view_all.html'
         } else {

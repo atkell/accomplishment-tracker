@@ -1,6 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const storage = new Storage();
-    storage.freeSpace();
+
+    if (document.location.href.includes('add_new')) {
+        const nav = new Navbar();
+        nav.build();
+
+        const footer = new Footer();
+        footer.build();
+    } else {
+        const storage = new Storage();
+        storage.freeSpace();
+    }
+
+
 
     // Create new
     const accomplishment = new Accomplishment();
@@ -14,9 +25,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // See all
-    document.getElementById("view").addEventListener("click", function() {
-        accomplishment.openNewTab('popup/view_all.html#window');
-    });
+    if (document.getElementById("view")) {
+        document.getElementById("view").addEventListener("click", function() {
+            accomplishment.openNewTab('popup/view_all.html#window');
+        });
+    }
 
     if (document.getElementById("storage-learn-more")) {
         document.getElementById("storage-learn-more").addEventListener("click", function() {
