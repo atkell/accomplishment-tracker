@@ -53,6 +53,9 @@ class Accomplishment {
     sortByCreatedDate(value) {
 
         let unsortedValues = Object.values(value);
+
+        if (!unsortedValues.length) {this.showEmptyState();}
+
         let storageBox = unsortedValues.sort(function (a, b) {
             return b[2]['date'] - a[2]['date'];
         });
@@ -341,6 +344,30 @@ class Accomplishment {
         let separator = "-";
         return year + separator + month + separator + date;
 
+    }
+
+    showEmptyState() {
+        // console.log('There are no values to show!');
+        // document.getElementById('main-container').innerHTML = "<p class='text-center'>Nothing to see here. Move along.</p>";
+
+        let mainContainer = document.getElementById('main-container');
+
+        let thisContainer = document.createElement('div');
+        thisContainer.classList.add('container-fluid', 'text-center', 'align-middle');
+        let containerContents = document.createElement('h1');
+        containerContents.classList.add('display-1');
+        containerContents.innerHTML = "Your box is empty 😢";
+        thisContainer.appendChild(containerContents);
+        mainContainer.append(thisContainer);
+
+    }
+
+    checkLength(value) {
+        if (Object.values(value).length > 0) {
+            this.sortByCreatedDate(value);
+        } else {
+            this.showEmptyState();
+        }
     }
 
     buildCardColumns() {
